@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм» [![Build status][travis-image]][travis-url] [![Dependency status][dependency-image]][dependency-url]
 
 * Студент: [Ilya Suglobov](https://up.htmlacademy.ru/javascript/8/user/196724).
-* Наставник: `Неизвестно`.
+* Наставник: `Александр Быков`.
 
 ---
 
