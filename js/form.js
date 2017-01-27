@@ -1,5 +1,6 @@
 'use strict';
 
+
 var uploadOverlay = document.querySelector('.upload-overlay');
 var uploadFile = document.querySelector('.upload-input');
 var uploadFormCancel = document.querySelector('.upload-form-cancel');
@@ -45,15 +46,19 @@ var max = 100;
 var min = 25;
 var step = 25;
 var valueDefault = 100;
+var scale = 1;
 
 controlValue.value = '100%';
 for (i = 0; i < 1; i++) {
-
   controlDec.addEventListener('click', function () {
     if (valueDefault > min) {
       valueDefault = (valueDefault - step);
     }
     controlValue.value = valueDefault + '%';
+    if (scale > 0.25) {
+      scale = scale - 0.25;
+    }
+    filterImagePreview.style.transform = 'scale(' + (scale) + ')';
   });
 
   controlInc.addEventListener('click', function () {
@@ -61,5 +66,9 @@ for (i = 0; i < 1; i++) {
       valueDefault = (valueDefault + step);
     }
     controlValue.value = valueDefault + '%';
+    if (scale < 1) {
+      scale = scale + 0.25;
+    }
+    filterImagePreview.style.transform = 'scale(' + (scale) + ')';
   });
 }
