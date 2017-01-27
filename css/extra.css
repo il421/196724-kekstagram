@@ -1,3 +1,13 @@
 .filter-image-preview-scale {
   transform: scale(0.75);
-}
+};
+
+.filter-phobos {
+  -webkit-filter: sepia(1) grayscale(1);
+          filter: sepia(1) grayscale(1);
+};
+
+.filter-heat {
+  -webkit-filter: brightness(1);
+          filter: brightness(1);
+};

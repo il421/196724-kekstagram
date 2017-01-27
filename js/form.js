@@ -5,6 +5,14 @@ var uploadFile = document.querySelector('.upload-input');
 var uploadFormCancel = document.querySelector('.upload-form-cancel');
 var filterImagePreview = document.querySelector('.filter-image-preview');
 var filters = document.querySelectorAll('.upload-filter-controls input');
+var setOfFilters = [
+  '',
+  'filter-chrome',
+  'filter-sepia',
+  'filter-marvin',
+  'filter-phobos',
+  'filter-heat'
+];
 
 var controlDec = document.querySelector('.upload-resize-controls-button-dec');
 var controlInc = document.querySelector('.upload-resize-controls-button-inc');
@@ -26,15 +34,19 @@ uploadFormCancel.addEventListener('click', function () {
 
 // ЗАДАНИЕ 3
 for (var i = 0; i < filters.length; i++) {
-  filters[i].addEventListener('click', function () {
-    filterImagePreview.classList.add('filter-chrome');
+  filters[0].addEventListener('click', function () {
+    filterImagePreview.classList.remove(setOfFilters[i]);
+  });
+
+  filters[1].addEventListener('click', function () {
+    filterImagePreview.classList.remove(setOfFilters[i]);
+    filterImagePreview.classList.add(setOfFilters[2]);
   });
 }
 
-
 // ЗАДАНИЕ 4
 controlValue.value = max;
-for (var k = 0; k < 1; k++) {
+for (i = 0; i < 1; i++) {
   controlDec.addEventListener('click', function () {
     if (controlValue.value > min) {
       controlValue.value = (controlValue.value - step);
