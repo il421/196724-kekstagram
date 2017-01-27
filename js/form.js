@@ -18,8 +18,6 @@ var controlDec = document.querySelector('.upload-resize-controls-button-dec');
 var controlInc = document.querySelector('.upload-resize-controls-button-inc');
 var controlValue = document.querySelector('.upload-resize-controls-value');
 
-
-
 // ЗАДАНИЕ 1
 if (uploadFile.required) {
   uploadOverlay.classList.remove('invisible');
@@ -46,22 +44,22 @@ for (var i = 0; i < filters.length; i++) {
 var max = 100;
 var min = 25;
 var step = 25;
-var value = 100;
+var valueDefault = 100;
 
 controlValue.value = '100%';
 for (i = 0; i < 1; i++) {
 
   controlDec.addEventListener('click', function () {
-    if (value > min) {
-      value = (value - step);
+    if (valueDefault > min) {
+      valueDefault = (valueDefault - step);
     }
-    controlValue.value = value + '%';
+    controlValue.value = valueDefault + '%';
   });
 
   controlInc.addEventListener('click', function () {
-    if (value < max) {
-      value = (value + step);
+    if (valueDefault < max) {
+      valueDefault = (valueDefault + step);
     }
-    controlValue.value = value + '%';
+    controlValue.value = valueDefault + '%';
   });
 }
