@@ -60,7 +60,7 @@ for (i = 0; i < 1; i++) {
 
   controlInc.addEventListener('click', function () {
     if (value < max) {
-      value = (Number(value) + step);
+      value = (value + step);
     }
     controlValue.value = value + '%';
   });
