@@ -40,7 +40,7 @@ for (var i = 0; i < filters.length; i++) {
 
   filters[1].addEventListener('click', function () {
     filterImagePreview.classList.remove(setOfFilters[i]);
-    filterImagePreview.classList.add(setOfFilters[2]);
+    filterImagePreview.classList.add(setOfFilters[1]);
   });
 }
 
