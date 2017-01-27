@@ -18,9 +18,7 @@ var controlDec = document.querySelector('.upload-resize-controls-button-dec');
 var controlInc = document.querySelector('.upload-resize-controls-button-inc');
 var controlValue = document.querySelector('.upload-resize-controls-value');
 
-var max = 100;
-var min = 25;
-var step = 25;
+
 
 // ЗАДАНИЕ 1
 if (uploadFile.required) {
@@ -45,17 +43,25 @@ for (var i = 0; i < filters.length; i++) {
 }
 
 // ЗАДАНИЕ 4
-controlValue.value = max;
+var max = 100;
+var min = 25;
+var step = 25;
+var value = 100;
+
+controlValue.value = '100%';
 for (i = 0; i < 1; i++) {
+
   controlDec.addEventListener('click', function () {
-    if (controlValue.value > min) {
-      controlValue.value = (controlValue.value - step);
+    if (value > min) {
+      value = (value - step);
     }
+    controlValue.value = value + '%';
   });
 
   controlInc.addEventListener('click', function () {
-    if (controlValue.value < max) {
-      controlValue.value = (Number(controlValue.value) + step);
+    if (value < max) {
+      value = (Number(value) + step);
     }
+    controlValue.value = value + '%';
   });
 }
