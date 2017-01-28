@@ -1,9 +1,9 @@
-.filter-phobos {
-  -webkit-filter: sepia(1) grayscale(1);
-          filter: sepia(1) grayscale(1);
-};
-
 .filter-heat {
-  -webkit-filter: brightness(1);
-          filter: brightness(1);
-};
+  -webkit-filter: saturate(2);
+          filter: saturate(2);
+}
+
+.filter-phobos {
+  -webkit-filter: contrast(1.1) brightness(1.3) saturate(2.4) sepia(0.4);
+          filter: contrast(1.1) brightness(1.3) saturate(2.4) sepia(0.4);
+}

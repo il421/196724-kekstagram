@@ -1,20 +1,16 @@
 'use strict';
-
-
 var uploadOverlay = document.querySelector('.upload-overlay');
 var uploadFile = document.querySelector('.upload-input');
 var uploadFormCancel = document.querySelector('.upload-form-cancel');
-var filterImagePreview = document.querySelector('.filter-image-preview');
+var photo = document.querySelector('.filter-image-preview');
 var filters = document.querySelectorAll('.upload-filter-controls input');
 var setOfFilters = [
-  '',
   'filter-chrome',
   'filter-sepia',
   'filter-marvin',
   'filter-phobos',
   'filter-heat'
 ];
-
 var controlDec = document.querySelector('.upload-resize-controls-button-dec');
 var controlInc = document.querySelector('.upload-resize-controls-button-inc');
 var controlValue = document.querySelector('.upload-resize-controls-value');
@@ -30,16 +26,39 @@ uploadFormCancel.addEventListener('click', function () {
 });
 
 // ЗАДАНИЕ 3
-for (var i = 0; i < filters.length; i++) {
-  filters[0].addEventListener('click', function () {
-    filterImagePreview.classList.remove(setOfFilters[i]);
-  });
-
-  filters[1].addEventListener('click', function () {
-    filterImagePreview.classList.remove(setOfFilters[i]);
-    filterImagePreview.classList.add(setOfFilters[1]);
-  });
+function filterRemove() {
+  for (var i = 0; i < setOfFilters.length; i++) {
+    photo.classList.remove(setOfFilters[i]);
+  }
 }
+filters[0].addEventListener('click', function () {
+  filterRemove();
+});
+
+filters[1].addEventListener('click', function () {
+  filterRemove();
+  photo.classList.add(setOfFilters[0]);
+});
+
+filters[2].addEventListener('click', function () {
+  filterRemove();
+  photo.classList.add(setOfFilters[1]);
+});
+
+filters[3].addEventListener('click', function () {
+  filterRemove();
+  photo.classList.add(setOfFilters[2]);
+});
+
+filters[4].addEventListener('click', function () {
+  filterRemove();
+  photo.classList.add(setOfFilters[3]);
+});
+
+filters[5].addEventListener('click', function () {
+  filterRemove();
+  photo.classList.add(setOfFilters[4]);
+});
 
 // ЗАДАНИЕ 4
 var max = 100;
@@ -49,7 +68,7 @@ var valueDefault = 100;
 var scale = 1;
 
 controlValue.value = '100%';
-for (i = 0; i < 1; i++) {
+for (var i = 0; i < 1; i++) {
   controlDec.addEventListener('click', function () {
     if (valueDefault > min) {
       valueDefault = (valueDefault - step);
@@ -58,7 +77,7 @@ for (i = 0; i < 1; i++) {
     if (scale > 0.25) {
       scale = scale - 0.25;
     }
-    filterImagePreview.style.transform = 'scale(' + (scale) + ')';
+    photo.style.transform = 'scale(' + (scale) + ')';
   });
 
   controlInc.addEventListener('click', function () {
@@ -69,6 +88,6 @@ for (i = 0; i < 1; i++) {
     if (scale < 1) {
       scale = scale + 0.25;
     }
-    filterImagePreview.style.transform = 'scale(' + (scale) + ')';
+    photo.style.transform = 'scale(' + (scale) + ')';
   });
 }
