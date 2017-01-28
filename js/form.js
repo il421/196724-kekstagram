@@ -26,38 +26,36 @@ uploadFormCancel.addEventListener('click', function () {
 });
 
 // ЗАДАНИЕ 3
-function filterRemove() {
+function filterRemoveAdd(filter) {
   for (var i = 0; i < setOfFilters.length; i++) {
     photo.classList.remove(setOfFilters[i]);
+    photo.classList.add(setOfFilters[filter]);
   }
 }
 filters[0].addEventListener('click', function () {
-  filterRemove();
+  for (var i = 0; i < setOfFilters.length; i++) {
+    photo.classList.remove(setOfFilters[i]);
+  }
 });
 
 filters[1].addEventListener('click', function () {
-  filterRemove();
-  photo.classList.add(setOfFilters[0]);
+  filterRemoveAdd(0);
 });
 
 filters[2].addEventListener('click', function () {
-  filterRemove();
-  photo.classList.add(setOfFilters[1]);
+  filterRemoveAdd(1);
 });
 
 filters[3].addEventListener('click', function () {
-  filterRemove();
-  photo.classList.add(setOfFilters[2]);
+  filterRemoveAdd(2);
 });
 
 filters[4].addEventListener('click', function () {
-  filterRemove();
-  photo.classList.add(setOfFilters[3]);
+  filterRemoveAdd(3);
 });
 
 filters[5].addEventListener('click', function () {
-  filterRemove();
-  photo.classList.add(setOfFilters[4]);
+  filterRemoveAdd(4);
 });
 
 // ЗАДАНИЕ 4
