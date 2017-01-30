@@ -29,8 +29,8 @@ uploadFormCancel.addEventListener('click', function () {
 function filterRemoveAdd(filter) {
   for (var i = 0; i < setOfFilters.length; i++) {
     photo.classList.remove(setOfFilters[i]);
-    photo.classList.add(setOfFilters[filter]);
   }
+  photo.classList.add(setOfFilters[filter]);
 }
 filters[0].addEventListener('click', function () {
   for (var i = 0; i < setOfFilters.length; i++) {
