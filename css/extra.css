@@ -7,3 +7,8 @@
   -webkit-filter: contrast(1.1) brightness(1.3) saturate(2.4) sepia(0.4);
           filter: contrast(1.1) brightness(1.3) saturate(2.4) sepia(0.4);
 }
+
+.filter-none {
+  -webkit-filter: none;
+          filter: none;
+}

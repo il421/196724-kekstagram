@@ -5,6 +5,7 @@ var uploadFormCancel = document.querySelector('.upload-form-cancel');
 var photo = document.querySelector('.filter-image-preview');
 var filters = document.querySelectorAll('.upload-filter-controls input');
 var setOfFilters = [
+  'filter-none',
   'filter-chrome',
   'filter-sepia',
   'filter-marvin',
@@ -26,37 +27,42 @@ uploadFormCancel.addEventListener('click', function () {
 });
 
 // ЗАДАНИЕ 3
+
 function filterRemoveAdd(filter) {
   for (var i = 0; i < setOfFilters.length; i++) {
     photo.classList.remove(setOfFilters[i]);
   }
   photo.classList.add(setOfFilters[filter]);
 }
-filters[0].addEventListener('click', function () {
-  for (var i = 0; i < setOfFilters.length; i++) {
-    photo.classList.remove(setOfFilters[i]);
-  }
-});
 
+for (var i = 0; i < filters.length; i++) {
+  filters[i].addEventListener('click', function () {
+    filterRemoveAdd(i);
+  });
+}
+
+
+/*
 filters[1].addEventListener('click', function () {
-  filterRemoveAdd(0);
-});
-
-filters[2].addEventListener('click', function () {
   filterRemoveAdd(1);
 });
 
-filters[3].addEventListener('click', function () {
+filters[2].addEventListener('click', function () {
   filterRemoveAdd(2);
 });
 
-filters[4].addEventListener('click', function () {
+filters[3].addEventListener('click', function () {
   filterRemoveAdd(3);
 });
 
-filters[5].addEventListener('click', function () {
+filters[4].addEventListener('click', function () {
   filterRemoveAdd(4);
 });
+
+filters[5].addEventListener('click', function () {
+  filterRemoveAdd(5);
+});
+*/
 
 // ЗАДАНИЕ 4
 var max = 100;
