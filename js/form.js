@@ -72,7 +72,7 @@ var valueDefault = 100;
 var scale = 1;
 
 controlValue.value = '100%';
-for (var i = 0; i < 1; i++) {
+for (i = 0; i < 1; i++) {
   controlDec.addEventListener('click', function () {
     if (valueDefault > min) {
       valueDefault = (valueDefault - step);
