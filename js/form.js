@@ -44,32 +44,6 @@ for (var i = 0; i < filters.length; i++) {
   clickFilter(i);
 }
 
-/*
-filters[0].addEventListener('click', function () {
-  filterRemoveAdd(0);
-});
-
-filters[1].addEventListener('click', function () {
-  filterRemoveAdd(1);
-});
-
-filters[2].addEventListener('click', function () {
-  filterRemoveAdd(2);
-});
-
-filters[3].addEventListener('click', function () {
-  filterRemoveAdd(3);
-});
-
-filters[4].addEventListener('click', function () {
-  filterRemoveAdd(4);
-});
-
-filters[5].addEventListener('click', function () {
-  filterRemoveAdd(5);
-});
-*/
-
 // ЗАДАНИЕ 4
 var max = 100;
 var min = 25;
