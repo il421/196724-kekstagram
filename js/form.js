@@ -3,7 +3,7 @@ var uploadOverlay = document.querySelector('.upload-overlay');
 var uploadFile = document.querySelector('.upload-input');
 var uploadFormCancel = document.querySelector('.upload-form-cancel');
 var photo = document.querySelector('.filter-image-preview');
-var filters = document.querySelectorAll('.upload-filter-controls input');
+var filters = uploadOverlay.querySelectorAll('.upload-filter-controls input');
 var setOfFilters = [
   'filter-none',
   'filter-chrome',
@@ -34,13 +34,21 @@ function filterRemoveAdd(filter) {
   photo.classList.add(setOfFilters[filter]);
 }
 
-for (var i = 0; i < filters.length; i++) {
+function clickFilter(i) {
   filters[i].addEventListener('click', function () {
     filterRemoveAdd(i);
   });
 }
 
+for (var i = 0; i < filters.length; i++) {
+  clickFilter(i);
+}
+
 /*
+filters[0].addEventListener('click', function () {
+  filterRemoveAdd(0);
+});
+
 filters[1].addEventListener('click', function () {
   filterRemoveAdd(1);
 });
