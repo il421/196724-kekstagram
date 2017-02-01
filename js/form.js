@@ -1,4 +1,5 @@
 'use strict';
+
 var uploadOverlay = document.querySelector('.upload-overlay');
 var uploadFile = document.querySelector('.upload-input');
 var uploadFormCancel = document.querySelector('.upload-form-cancel');
@@ -12,39 +13,40 @@ var setOfFilters = [
   'filter-phobos',
   'filter-heat'
 ];
+
 var controlDec = document.querySelector('.upload-resize-controls-button-dec');
 var controlInc = document.querySelector('.upload-resize-controls-button-inc');
 var controlValue = document.querySelector('.upload-resize-controls-value');
 
-// ЗАДАНИЕ 1
-if (uploadFile.required) {
-  uploadOverlay.classList.remove('invisible');
-}
-
-// ЗАДАНИЕ 2
-uploadFormCancel.addEventListener('click', function () {
-  uploadOverlay.classList.add('invisible');
-});
-
-// ЗАДАНИЕ 3
-function filterRemoveAdd(filter) {
+var filterRemoveAdd = function (filter) {
   for (var i = 0; i < setOfFilters.length; i++) {
     photo.classList.remove(setOfFilters[i]);
   }
   photo.classList.add(setOfFilters[filter]);
-}
+};
 
-function clickFilter(i) {
+var clickFilter = function (i) {
   filters[i].addEventListener('click', function () {
     filterRemoveAdd(i);
   });
+};
+
+// Open filter
+if (uploadFile.required) {
+  uploadOverlay.classList.remove('invisible');
 }
 
+// Close filter
+uploadFormCancel.addEventListener('click', function () {
+  uploadOverlay.classList.add('invisible');
+});
+
+// Select filter
 for (var i = 0; i < filters.length; i++) {
   clickFilter(i);
 }
 
-// ЗАДАНИЕ 4
+// Change scale
 var max = 100;
 var min = 25;
 var step = 25;
