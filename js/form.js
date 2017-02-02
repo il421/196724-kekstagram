@@ -5,7 +5,7 @@ var uploadFile = document.querySelector('.upload-file');
 var uploadFormCancel = document.querySelector('.upload-form-cancel');
 var uploadFormSubmit = document.querySelector('.upload-form-submit');
 var photo = document.querySelector('.filter-image-preview');
-var filters = uploadOverlay.querySelectorAll('.upload-filter-controls label');
+var filterControls = document.querySelector('.upload-filter-controls');
 var setOfFilters = [
   'filter-none',
   'filter-chrome',
@@ -51,26 +51,21 @@ var controlDec = document.querySelector('.upload-resize-controls-button-dec');
 var controlInc = document.querySelector('.upload-resize-controls-button-inc');
 var controlValue = document.querySelector('.upload-resize-controls-value');
 
-var removeAndAddFilter = function (filter) {
+var removeAndAddFilter = function (evt) {
   for (var i = 0; i < setOfFilters.length; i++) {
     photo.classList.remove(setOfFilters[i]);
   }
-  photo.classList.add(setOfFilters[filter]);
+  photo.classList.add('filter-' + evt.target['value']);
 };
 
-var clickFilter = function (i) {
-  filters[i].addEventListener('click', function () {
-    removeAndAddFilter(i);
-  });
-};
-
-var keydownFilter = function (i) {
+/* var keydownFilter = function (i) {
   filters[i].addEventListener('keydown', function (evt) {
     if (isActiavateEvent(evt)) {
       removeAndAddFilter(i);
     }
   });
 };
+*/
 
 // OPEN FILTER
 uploadFile.addEventListener('click', function () {
@@ -106,10 +101,8 @@ uploadFormSubmit.addEventListener('keydown', function (evt) {
 });
 
 // SELECT FILTER
-for (var i = 0; i < filters.length; i++) {
-  clickFilter(i);
-  keydownFilter(i);
-}
+filterControls.addEventListener('change', removeAndAddFilter, false);
+
 
 // CHANGE SCALE
 var max = 100;
@@ -119,7 +112,7 @@ var valueDefault = 100;
 var scale = 1;
 
 controlValue.value = '100%';
-for (i = 0; i < 1; i++) {
+for (var i = 0; i < 1; i++) {
   controlDec.addEventListener('click', function () {
     if (valueDefault > min) {
       valueDefault = (valueDefault - step);
