@@ -1,8 +1,9 @@
 'use strict';
 
 var uploadOverlay = document.querySelector('.upload-overlay');
-var uploadFile = document.querySelector('.upload-input');
+var uploadFile = document.querySelector('.upload-file');
 var uploadFormCancel = document.querySelector('.upload-form-cancel');
+var uploadFormSubmit = document.querySelector('.upload-form-submit');
 var photo = document.querySelector('.filter-image-preview');
 var filters = uploadOverlay.querySelectorAll('.upload-filter-controls input');
 var setOfFilters = [
@@ -13,6 +14,38 @@ var setOfFilters = [
   'filter-phobos',
   'filter-heat'
 ];
+
+var ENTER_KEY_CODE = 13;
+var ESCAPE_KEY_CODE = 27;
+
+var isActiavateEvent = function (evt) {
+  return evt.keyCode && evt.keyCode === ENTER_KEY_CODE;
+};
+var isDisactiavateEvent = function (evt) {
+  return evt.keyCode && evt.keyCode === ESCAPE_KEY_CODE;
+};
+var keydownHendler = function (evt) {
+  if (isDisactiavateEvent(evt)) {
+    uploadOverlay.classList.add('invisible');
+  }
+};
+var showSetupElement = function () {
+  uploadOverlay.classList.remove('invisible');
+  document.addEventListener('keydown', keydownHendler);
+  uploadFile.setAttribute('aria-pressed', true);
+  uploadFormCancel.setAttribute('aria-pressed', false);
+};
+var hideSetupElement = function () {
+  uploadOverlay.classList.add('invisible');
+  document.removeEventListener('keydown', keydownHendler);
+  uploadFile.setAttribute('aria-pressed', false);
+  uploadFormCancel.setAttribute('aria-pressed', true);
+};
+var submitElement = function () {
+  uploadOverlay.classList.add('invisible');
+  uploadFormCancel.setAttribute('aria-pressed', true);
+  uploadFormCancel.setAttribute('aria-pressed', false);
+};
 
 var controlDec = document.querySelector('.upload-resize-controls-button-dec');
 var controlInc = document.querySelector('.upload-resize-controls-button-inc');
@@ -31,22 +64,57 @@ var clickFilter = function (i) {
   });
 };
 
-// Open filter
-if (uploadFile.required) {
-  uploadOverlay.classList.remove('invisible');
-}
+var keydownFilter = function (i) {
+  filters[i].addEventListener('keydown', function (evt) {
+    if (isActiavateEvent(evt)) {
+      filterRemoveAdd(i);
+    }
+  });
+};
 
-// Close filter
-uploadFormCancel.addEventListener('click', function () {
-  uploadOverlay.classList.add('invisible');
+// OPEN FILTER
+uploadFile.addEventListener('click', function () {
+  showSetupElement();
 });
 
-// Select filter
+uploadFile.addEventListener('keydown', function (evt) {
+  if (isActiavateEvent(evt)) {
+    showSetupElement();
+  }
+});
+
+// CLOSE FILTER
+uploadFormCancel.addEventListener('click', function () {
+  hideSetupElement();
+});
+
+uploadFormCancel.addEventListener('keydown', function (evt) {
+  if (isActiavateEvent(evt)) {
+    hideSetupElement();
+  }
+});
+
+// SUBMIT FILTER
+uploadFormSubmit.addEventListener('click', function () {
+  submitElement();
+});
+
+uploadFormSubmit.addEventListener('keydown', function (evt) {
+  if (isActiavateEvent(evt)) {
+    submitElement();
+  }
+});
+
+// SELECT FILTER
 for (var i = 0; i < filters.length; i++) {
   clickFilter(i);
 }
 
-// Change scale
+for (i = 0; i < filters.length; i++) {
+  keydownFilter(i);
+}
+
+// CHANGE SCALE
 var max = 100;
 var min = 25;
 var step = 25;

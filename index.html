@@ -23,16 +23,16 @@
 <div class="upload">
   <form class="upload-form upload-image" id="upload-select-image" method="post" enctype="multipart/form-data">
     <input type="file" id="upload-file" class="upload-input" name="filename" required>
-    <label class="upload-file upload-control" for="upload-file"></label>
+    <label class="upload-file upload-control" for="upload-file" role="button" aria-pressed="false" tabindex="1"></label>
     <button class="upload-submit upload-control" type="submit"></button>
   </form>
 
-  <div class="upload-overlay">
+  <div class="upload-overlay invisible" role="slider" aria-valuemin="1" aria-valuemax="6" aria-valuenow="1">
     <form class="upload-form upload-filter" id="upload-filter" method="post" enctype="multipart/form-data">
       <fieldset class="upload-resize-controls">
-        <button type="button" class="upload-resize-control upload-resize-controls-button upload-resize-controls-button-dec">–</button><!--
+        <button type="button" class="upload-resize-control upload-resize-controls-button upload-resize-controls-button-dec" tabindex="1">–</button><!--
         --><input type="text" class="upload-resize-control upload-resize-controls-value" value="" readonly /><!--
-        --><button type="button" class="upload-resize-control upload-resize-controls-button upload-resize-controls-button-inc">+</button>
+        --><button type="button" class="upload-resize-control upload-resize-controls-button upload-resize-controls-button-inc" tabindex="2">+</button>
       </fieldset>
 
       <div class="upload-form-preview">
@@ -49,46 +49,46 @@
         </div>
 
         <input type="radio" name="upload-filter" id="upload-filter-none" value="none" checked>
-        <label class="upload-filter-label" for="upload-filter-none">
+        <label class="upload-filter-label" for="upload-filter-none" tabindex="3">
           <div class="upload-filter-preview"></div>
           Оригинал
         </label>
 
         <input type="radio" name="upload-filter" id="upload-filter-chrome" value="chrome">
-        <label class="upload-filter-label upload-filter-label-chrome" for="upload-filter-chrome">
+        <label class="upload-filter-label upload-filter-label-chrome" for="upload-filter-chrome" tabindex="4">
           <div class="upload-filter-preview"></div>
           Хром
         </label>
 
         <input type="radio" name="upload-filter" id="upload-filter-sepia" value="sepia">
-        <label class="upload-filter-label upload-filter-label-sepia" for="upload-filter-sepia">
+        <label class="upload-filter-label upload-filter-label-sepia" for="upload-filter-sepia" tabindex="5">
           <div class="upload-filter-preview"></div>
           Сепия
         </label>
 
         <input type="radio" name="upload-filter" id="upload-filter-marvin" value="marvin">
-        <label class="upload-filter-label upload-filter-label-marvin" for="upload-filter-marvin">
+        <label class="upload-filter-label upload-filter-label-marvin" for="upload-filter-marvin" tabindex="6">
           <div class="upload-filter-preview"></div>
           Марвин
         </label>
 
         <input type="radio" name="upload-filter" id="upload-filter-phobos" value="phobos">
-        <label class="upload-filter-label upload-filter-label-phobos" for="upload-filter-phobos">
+        <label class="upload-filter-label upload-filter-label-phobos" for="upload-filter-phobos" tabindex="7">
           <div class="upload-filter-preview"></div>
           Фобос
         </label>
 
         <input type="radio" name="upload-filter" id="upload-filter-heat" value="heat">
-        <label class="upload-filter-label upload-filter-label-heat" for="upload-filter-heat">
+        <label class="upload-filter-label upload-filter-label-heat" for="upload-filter-heat" tabindex="8">
           <div class="upload-filter-preview"></div>
           Зной
         </label>
       </fieldset>
 
-      <textarea class="upload-form-description" name="upload-description" placeholder="Ваш комментарий..."></textarea>
+      <textarea class="upload-form-description" name="upload-description" placeholder="Ваш комментарий..." tabindex="9"></textarea>
 
-      <button class="upload-form-cancel" type="reset" id="upload-cancel"></button>
-      <button class="upload-form-submit" type="submit" id="upload-submit">Отправить</button>
+      <button class="upload-form-cancel" type="reset" id="upload-cancel" role="button" aria-pressed="true" tabindex="11"></button>
+      <button class="upload-form-submit" type="submit" id="upload-submit" role="button" aria-pressed="false"  tabindex="10">Отправить</button>
     </form>
   </div>
 
@@ -103,13 +103,13 @@
 <footer class="footer container">
   <div class="center-wrapper">
     <section class="footer-logo">
-      Сделано в <a tabindex="1" href="http://htmlacademy.ru" class="footer-logo-link"><img src="img/ha-logo.png" class="footer-logo-image" width="130" alt="HTML Academy" />HTML Academy</a> &copy; 2017
+      Сделано в <a tabindex="12" href="http://htmlacademy.ru" class="footer-logo-link"><img src="img/ha-logo.png" class="footer-logo-image" width="130" alt="HTML Academy" />HTML Academy</a> &copy; 2017
     </section>
     <nav class="footer-social">
-      <a tabindex="1" href="https://twitter.com/htmlacademy_ru" alt="twitter" class="footer-social-item footer-social-item-twitter" target="_blank" rel="nofollow">Twitter</a>
-      <a tabindex="1" href="https://www.instagram.com/htmlacademy/" alt="instagram" class="footer-social-item footer-social-item-instagram" target="_blank" rel="nofollow">Instagtam</a>
-      <a tabindex="1" href="https://www.facebook.com/htmlacademy" alt="facebook" class="footer-social-item footer-social-item-facebook" target="_blank" rel="nofollow">Facebook</a>
-      <a tabindex="1" href="https://vk.com/htmlacademy" alt="vk" class="footer-social-item footer-social-item-vk" target="_blank" rel="nofollow">VK</a>
+      <a tabindex="12" href="https://twitter.com/htmlacademy_ru" alt="twitter" class="footer-social-item footer-social-item-twitter" target="_blank" rel="nofollow">Twitter</a>
+      <a tabindex="12" href="https://www.instagram.com/htmlacademy/" alt="instagram" class="footer-social-item footer-social-item-instagram" target="_blank" rel="nofollow">Instagtam</a>
+      <a tabindex="12" href="https://www.facebook.com/htmlacademy" alt="facebook" class="footer-social-item footer-social-item-facebook" target="_blank" rel="nofollow">Facebook</a>
+      <a tabindex="12" href="https://vk.com/htmlacademy" alt="vk" class="footer-social-item footer-social-item-vk" target="_blank" rel="nofollow">VK</a>
     </nav>
   </div>
 </footer>
