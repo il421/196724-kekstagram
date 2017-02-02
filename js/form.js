@@ -5,7 +5,7 @@ var uploadFile = document.querySelector('.upload-file');
 var uploadFormCancel = document.querySelector('.upload-form-cancel');
 var uploadFormSubmit = document.querySelector('.upload-form-submit');
 var photo = document.querySelector('.filter-image-preview');
-var filters = uploadOverlay.querySelectorAll('.upload-filter-controls input');
+var filters = uploadOverlay.querySelectorAll('.upload-filter-controls label');
 var setOfFilters = [
   'filter-none',
   'filter-chrome',
@@ -108,9 +108,6 @@ uploadFormSubmit.addEventListener('keydown', function (evt) {
 // SELECT FILTER
 for (var i = 0; i < filters.length; i++) {
   clickFilter(i);
-}
-
-for (i = 0; i < filters.length; i++) {
   keydownFilter(i);
 }
 
