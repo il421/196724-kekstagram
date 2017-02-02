@@ -25,7 +25,7 @@ var isDisactiavateEvent = function (evt) {
   return evt.keyCode && evt.keyCode === ESCAPE_KEY_CODE;
 };
 var keydownHendler = function (evt) {
-  if (isDisactiavateEvent(evt)) {
+  if (evt.target !== document.querySelector('textarea') && isDisactiavateEvent(evt)) {
     uploadOverlay.classList.add('invisible');
   }
 };
@@ -51,7 +51,7 @@ var controlDec = document.querySelector('.upload-resize-controls-button-dec');
 var controlInc = document.querySelector('.upload-resize-controls-button-inc');
 var controlValue = document.querySelector('.upload-resize-controls-value');
 
-var filterRemoveAdd = function (filter) {
+var removeAndAddFilter = function (filter) {
   for (var i = 0; i < setOfFilters.length; i++) {
     photo.classList.remove(setOfFilters[i]);
   }
@@ -60,14 +60,14 @@ var filterRemoveAdd = function (filter) {
 
 var clickFilter = function (i) {
   filters[i].addEventListener('click', function () {
-    filterRemoveAdd(i);
+    removeAndAddFilter(i);
   });
 };
 
 var keydownFilter = function (i) {
   filters[i].addEventListener('keydown', function (evt) {
     if (isActiavateEvent(evt)) {
-      filterRemoveAdd(i);
+      removeAndAddFilter(i);
     }
   });
 };
