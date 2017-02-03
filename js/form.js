@@ -52,20 +52,14 @@ var controlInc = document.querySelector('.upload-resize-controls-button-inc');
 var controlValue = document.querySelector('.upload-resize-controls-value');
 
 var removeAndAddFilter = function (evt) {
-  for (var i = 0; i < setOfFilters.length; i++) {
-    photo.classList.remove(setOfFilters[i]);
-  }
-  photo.classList.add('filter-' + evt.target['value']);
-};
-
-/* var keydownFilter = function (i) {
-  filters[i].addEventListener('keydown', function (evt) {
-    if (isActiavateEvent(evt)) {
-      removeAndAddFilter(i);
+  if (evt.target.tagName !== 'label') {
+    console.log(evt);
+    for (var i = 0; i < setOfFilters.length; i++) {
+      photo.classList.remove(setOfFilters[i]);
     }
-  });
+    photo.classList.add('filter-' + evt.target['value']);
+  }
 };
-*/
 
 // OPEN FILTER
 uploadFile.addEventListener('click', function () {
@@ -96,13 +90,19 @@ uploadFormSubmit.addEventListener('click', function () {
 
 uploadFormSubmit.addEventListener('keydown', function (evt) {
   if (isActiavateEvent(evt)) {
-    submitElement();
+    submitElement(evt.target['value']);
   }
 });
 
 // SELECT FILTER
 filterControls.addEventListener('change', removeAndAddFilter, false);
 
+filterControls.addEventListener('keyup', function (evt) {
+
+  if (isActiavateEvent(evt)) {
+    removeAndAddFilter(evt);
+  }
+}, false);
 
 // CHANGE SCALE
 var max = 100;
