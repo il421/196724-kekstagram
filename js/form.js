@@ -52,13 +52,10 @@ var controlInc = document.querySelector('.upload-resize-controls-button-inc');
 var controlValue = document.querySelector('.upload-resize-controls-value');
 
 var removeAndAddFilter = function (evt) {
-  if (evt.target.tagName !== 'label') {
-    console.log(evt);
-    for (var i = 0; i < setOfFilters.length; i++) {
-      photo.classList.remove(setOfFilters[i]);
-    }
-    photo.classList.add('filter-' + evt.target['value']);
+  for (var i = 0; i < setOfFilters.length; i++) {
+    photo.classList.remove(setOfFilters[i]);
   }
+  photo.classList.add(evt.target['htmlFor'].substring(7));
 };
 
 // OPEN FILTER
@@ -90,19 +87,12 @@ uploadFormSubmit.addEventListener('click', function () {
 
 uploadFormSubmit.addEventListener('keydown', function (evt) {
   if (isActiavateEvent(evt)) {
-    submitElement(evt.target['value']);
+    submitElement();
   }
 });
 
 // SELECT FILTER
-filterControls.addEventListener('change', removeAndAddFilter, false);
-
-filterControls.addEventListener('keyup', function (evt) {
-
-  if (isActiavateEvent(evt)) {
-    removeAndAddFilter(evt);
-  }
-}, false);
+filterControls.addEventListener('focus', removeAndAddFilter, true);
 
 // CHANGE SCALE
 var max = 100;
