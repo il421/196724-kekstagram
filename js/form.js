@@ -94,6 +94,12 @@ uploadFormSubmit.addEventListener('keydown', function (evt) {
 // SELECT FILTER
 filterControls.addEventListener('focus', removeAndAddFilter, true);
 
+filterControls.addEventListener('keydown', function (evt) {
+  if (isActiavateEvent(evt)) {
+    removeAndAddFilter(evt);
+  }
+}, true);
+
 // CHANGE SCALE
 var max = 100;
 var min = 25;
