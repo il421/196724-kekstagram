@@ -6,14 +6,6 @@ var uploadFormCancel = document.querySelector('.upload-form-cancel');
 var uploadFormSubmit = document.querySelector('.upload-form-submit');
 var photo = document.querySelector('.filter-image-preview');
 var filterControls = document.querySelector('.upload-filter-controls');
-var setOfFilters = [
-  'filter-none',
-  'filter-chrome',
-  'filter-sepia',
-  'filter-marvin',
-  'filter-phobos',
-  'filter-heat'
-];
 
 var ENTER_KEY_CODE = 13;
 var ESCAPE_KEY_CODE = 27;
@@ -52,10 +44,7 @@ var controlInc = document.querySelector('.upload-resize-controls-button-inc');
 var controlValue = document.querySelector('.upload-resize-controls-value');
 
 var removeAndAddFilter = function (evt) {
-  for (var i = 0; i < setOfFilters.length; i++) {
-    photo.classList.remove(setOfFilters[i]);
-  }
-  photo.classList.add(evt.target['htmlFor'].substring(7));
+  photo.className = 'filter-image-preview ' + evt.target['htmlFor'].substring(7);
 };
 
 // OPEN FILTER
