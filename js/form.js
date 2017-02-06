@@ -4,8 +4,8 @@ var uploadOverlay = document.querySelector('.upload-overlay');
 var uploadFile = document.querySelector('.upload-file');
 var uploadFormCancel = document.querySelector('.upload-form-cancel');
 var uploadFormSubmit = document.querySelector('.upload-form-submit');
-var photo = document.querySelector('.filter-image-preview');
 var filterControls = document.querySelector('.upload-filter-controls');
+var photo = document.querySelector('.filter-image-preview');
 
 var ENTER_KEY_CODE = 13;
 var ESCAPE_KEY_CODE = 27;
@@ -43,10 +43,6 @@ var controlDec = document.querySelector('.upload-resize-controls-button-dec');
 var controlInc = document.querySelector('.upload-resize-controls-button-inc');
 var controlValue = document.querySelector('.upload-resize-controls-value');
 
-var removeAndAddFilter = function (evt) {
-  photo.className = 'filter-image-preview ' + evt.target['htmlFor'].substring(7);
-};
-
 // OPEN FILTER
 uploadFile.addEventListener('click', function () {
   showSetupElement();
@@ -81,11 +77,11 @@ uploadFormSubmit.addEventListener('keydown', function (evt) {
 });
 
 // SELECT FILTER
-filterControls.addEventListener('focus', removeAndAddFilter, true);
+filterControls.addEventListener('focus', window.initializeFilters, true);
 
 filterControls.addEventListener('keydown', function (evt) {
   if (isActiavateEvent(evt)) {
-    removeAndAddFilter(evt);
+    window.initializeFilters(evt);
   }
 }, true);
 
