@@ -14,7 +14,7 @@ window.utils = (function () {
     },
 
     keydownHendler: function (evt) {
-      if (evt.target !== document.querySelector('textarea') && window.utils.isDisactiavateEvent(evt)) {
+      if (evt.target !== document.querySelector('textarea') && this.isDisactiavateEvent(evt)) {
         window.uploadOverlay.classList.add('invisible');
       }
     }
