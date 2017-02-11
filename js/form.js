@@ -6,29 +6,15 @@ var uploadFormCancel = document.querySelector('.upload-form-cancel');
 var uploadFormSubmit = document.querySelector('.upload-form-submit');
 var filterControls = document.querySelector('.upload-filter-controls');
 
-var ENTER_KEY_CODE = 13;
-var ESCAPE_KEY_CODE = 27;
-
-var isActiavateEvent = function (evt) {
-  return evt.keyCode && evt.keyCode === ENTER_KEY_CODE;
-};
-var isDisactiavateEvent = function (evt) {
-  return evt.keyCode && evt.keyCode === ESCAPE_KEY_CODE;
-};
-var keydownHendler = function (evt) {
-  if (evt.target !== document.querySelector('textarea') && isDisactiavateEvent(evt)) {
-    uploadOverlay.classList.add('invisible');
-  }
-};
 var showSetupElement = function () {
   uploadOverlay.classList.remove('invisible');
-  document.addEventListener('keydown', keydownHendler);
+  document.addEventListener('keydown', window.utils.keydownHendler);
   uploadFile.setAttribute('aria-pressed', true);
   uploadFormCancel.setAttribute('aria-pressed', false);
 };
 var hideSetupElement = function () {
   uploadOverlay.classList.add('invisible');
-  document.removeEventListener('keydown', keydownHendler);
+  document.removeEventListener('keydown', window.utils.keydownHendler);
   uploadFile.setAttribute('aria-pressed', false);
   uploadFormCancel.setAttribute('aria-pressed', true);
 };
@@ -47,7 +33,7 @@ uploadFile.addEventListener('click', function () {
 });
 
 uploadFile.addEventListener('keydown', function (evt) {
-  if (isActiavateEvent(evt)) {
+  if (window.utils.isActiavateEvent(evt)) {
     showSetupElement();
   }
 });
@@ -58,7 +44,7 @@ uploadFormCancel.addEventListener('click', function () {
 });
 
 uploadFormCancel.addEventListener('keydown', function (evt) {
-  if (isActiavateEvent(evt)) {
+  if (window.utils.isActiavateEvent(evt)) {
     hideSetupElement();
   }
 });
@@ -69,7 +55,7 @@ uploadFormSubmit.addEventListener('click', function () {
 });
 
 uploadFormSubmit.addEventListener('keydown', function (evt) {
-  if (isActiavateEvent(evt)) {
+  if (window.utils.isActiavateEvent(evt)) {
     submitElement();
   }
 });
@@ -78,7 +64,7 @@ uploadFormSubmit.addEventListener('keydown', function (evt) {
 filterControls.addEventListener('focus', window.initializeFilters, true);
 
 filterControls.addEventListener('keydown', function (evt) {
-  if (isActiavateEvent(evt)) {
+  if (window.utils.isActiavateEvent(evt)) {
     window.initializeFilters(evt);
   }
 }, true);
