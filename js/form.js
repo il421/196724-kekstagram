@@ -1,104 +1,74 @@
 'use strict';
 
-var uploadOverlay = document.querySelector('.upload-overlay');
-var uploadFile = document.querySelector('.upload-file');
-var uploadFormCancel = document.querySelector('.upload-form-cancel');
-var uploadFormSubmit = document.querySelector('.upload-form-submit');
-var photo = document.querySelector('.filter-image-preview');
 var filterControls = document.querySelector('.upload-filter-controls');
-var setOfFilters = [
-  'filter-none',
-  'filter-chrome',
-  'filter-sepia',
-  'filter-marvin',
-  'filter-phobos',
-  'filter-heat'
-];
-
-var ENTER_KEY_CODE = 13;
-var ESCAPE_KEY_CODE = 27;
-
-var isActiavateEvent = function (evt) {
-  return evt.keyCode && evt.keyCode === ENTER_KEY_CODE;
-};
-var isDisactiavateEvent = function (evt) {
-  return evt.keyCode && evt.keyCode === ESCAPE_KEY_CODE;
-};
-var keydownHendler = function (evt) {
-  if (evt.target !== document.querySelector('textarea') && isDisactiavateEvent(evt)) {
-    uploadOverlay.classList.add('invisible');
-  }
-};
-var showSetupElement = function () {
-  uploadOverlay.classList.remove('invisible');
-  document.addEventListener('keydown', keydownHendler);
-  uploadFile.setAttribute('aria-pressed', true);
-  uploadFormCancel.setAttribute('aria-pressed', false);
-};
-var hideSetupElement = function () {
-  uploadOverlay.classList.add('invisible');
-  document.removeEventListener('keydown', keydownHendler);
-  uploadFile.setAttribute('aria-pressed', false);
-  uploadFormCancel.setAttribute('aria-pressed', true);
-};
-var submitElement = function () {
-  uploadOverlay.classList.add('invisible');
-  uploadFormCancel.setAttribute('aria-pressed', true);
-  uploadFormCancel.setAttribute('aria-pressed', false);
-};
-
 var controlDec = document.querySelector('.upload-resize-controls-button-dec');
 var controlInc = document.querySelector('.upload-resize-controls-button-inc');
-var controlValue = document.querySelector('.upload-resize-controls-value');
 
-var removeAndAddFilter = function (evt) {
-  if (evt.target.tagName !== 'label') {
-    for (var i = 0; i < setOfFilters.length; i++) {
-      photo.classList.remove(setOfFilters[i]);
-    }
-    photo.classList.add('filter-' + evt.target['value']);
-  }
-};
+(function () {
+  var uploadOverlay = document.querySelector('.upload-overlay');
+  var uploadFile = document.querySelector('.upload-file');
+  var uploadFormCancel = document.querySelector('.upload-form-cancel');
+  var uploadFormSubmit = document.querySelector('.upload-form-submit');
 
-// OPEN FILTER
-uploadFile.addEventListener('click', function () {
-  showSetupElement();
-});
+  var showSetupElement = function () {
+    uploadOverlay.classList.remove('invisible');
+    document.addEventListener('keydown', window.utils.keydownHendler);
+    uploadFile.setAttribute('aria-pressed', true);
+    uploadFormCancel.setAttribute('aria-pressed', false);
+  };
+  var hideSetupElement = function () {
+    uploadOverlay.classList.add('invisible');
+    document.removeEventListener('keydown', window.utils.keydownHendler);
+    uploadFile.setAttribute('aria-pressed', false);
+    uploadFormCancel.setAttribute('aria-pressed', true);
+  };
+  var submitElement = function () {
+    uploadOverlay.classList.add('invisible');
+    uploadFormCancel.setAttribute('aria-pressed', true);
+    uploadFormCancel.setAttribute('aria-pressed', false);
+  };
 
-uploadFile.addEventListener('keydown', function (evt) {
-  if (isActiavateEvent(evt)) {
+  // OPEN FILTER
+  uploadFile.addEventListener('click', function () {
     showSetupElement();
-  }
-});
+  });
 
-// CLOSE FILTER
-uploadFormCancel.addEventListener('click', function () {
-  hideSetupElement();
-});
+  uploadFile.addEventListener('keydown', function (evt) {
+    if (window.utils.isActiavateEvent(evt)) {
+      showSetupElement();
+    }
+  });
 
-uploadFormCancel.addEventListener('keydown', function (evt) {
-  if (isActiavateEvent(evt)) {
+  // CLOSE FILTER
+  uploadFormCancel.addEventListener('click', function () {
     hideSetupElement();
-  }
-});
+  });
 
-// SUBMIT FILTER
-uploadFormSubmit.addEventListener('click', function () {
-  submitElement();
-});
+  uploadFormCancel.addEventListener('keydown', function (evt) {
+    if (window.utils.isActiavateEvent(evt)) {
+      hideSetupElement();
+    }
+  });
 
-uploadFormSubmit.addEventListener('keydown', function (evt) {
-  if (isActiavateEvent(evt)) {
-    submitElement(evt.target['value']);
-  }
-});
+  // SUBMIT FILTER
+  uploadFormSubmit.addEventListener('click', function () {
+    submitElement();
+  });
+
+  uploadFormSubmit.addEventListener('keydown', function (evt) {
+    if (window.utils.isActiavateEvent(evt)) {
+      submitElement();
+    }
+  });
+})();
+
 
 // SELECT FILTER
-filterControls.addEventListener('change', removeAndAddFilter, false);
+filterControls.addEventListener('focus', window.initializeFilters, true);
 
 filterControls.addEventListener('keydown', function (evt) {
-  if (isActiavateEvent(evt)) {
-    console.log(evt);
+  if (window.utils.isActiavateEvent(evt)) {
+    window.initializeFilters(evt);
   }
 }, true);
 
@@ -106,30 +76,23 @@ filterControls.addEventListener('keydown', function (evt) {
 var max = 100;
 var min = 25;
 var step = 25;
-var valueDefault = 100;
-var scale = 1;
 
-controlValue.value = '100%';
-for (var i = 0; i < 1; i++) {
-  controlDec.addEventListener('click', function () {
-    if (valueDefault > min) {
-      valueDefault = (valueDefault - step);
+controlDec.addEventListener('click', function () {
+  if (window.valueDefault > min) {
+    window.valueDefault = (window.valueDefault - step);
+    if (window.scale > 0.25) {
+      window.scale = window.scale - 0.25;
     }
-    controlValue.value = valueDefault + '%';
-    if (scale > 0.25) {
-      scale = scale - 0.25;
-    }
-    photo.style.transform = 'scale(' + (scale) + ')';
-  });
+    window.createScale();
+  }
+});
 
-  controlInc.addEventListener('click', function () {
-    if (valueDefault < max) {
-      valueDefault = (valueDefault + step);
+controlInc.addEventListener('click', function () {
+  if (window.valueDefault < max) {
+    window.valueDefault = (window.valueDefault + step);
+    if (window.scale < 1) {
+      window.scale = window.scale + 0.25;
     }
-    controlValue.value = valueDefault + '%';
-    if (scale < 1) {
-      scale = scale + 0.25;
-    }
-    photo.style.transform = 'scale(' + (scale) + ')';
-  });
-}
+    window.createScale();
+  }
+});
