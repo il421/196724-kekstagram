@@ -53,7 +53,6 @@ var controlValue = document.querySelector('.upload-resize-controls-value');
 
 var removeAndAddFilter = function (evt) {
   if (evt.target.tagName !== 'label') {
-    console.log(evt);
     for (var i = 0; i < setOfFilters.length; i++) {
       photo.classList.remove(setOfFilters[i]);
     }
@@ -97,12 +96,11 @@ uploadFormSubmit.addEventListener('keydown', function (evt) {
 // SELECT FILTER
 filterControls.addEventListener('change', removeAndAddFilter, false);
 
-filterControls.addEventListener('keyup', function (evt) {
-
+filterControls.addEventListener('keydown', function (evt) {
   if (isActiavateEvent(evt)) {
-    removeAndAddFilter(evt);
+    console.log(evt);
   }
-}, false);
+}, true);
 
 // CHANGE SCALE
 var max = 100;
