@@ -84,27 +84,26 @@ filterControls.addEventListener('keydown', function (evt) {
 }, true);
 
 // CHANGE SCALE
-var valueDefault = 100;
 var max = 100;
 var min = 25;
 var step = 25;
 
 controlDec.addEventListener('click', function () {
-  if (valueDefault > min) {
-    valueDefault = (valueDefault - step);
+  if (window.valueDefault > min) {
+    window.valueDefault = (window.valueDefault - step);
     if (window.scale > 0.25) {
       window.scale = window.scale - 0.25;
     }
-    window.initializeScale();
+    window.createScale();
   }
 });
 
 controlInc.addEventListener('click', function () {
-  if (valueDefault < max) {
-    valueDefault = (valueDefault + step);
+  if (window.valueDefault < max) {
+    window.valueDefault = (window.valueDefault + step);
     if (window.scale < 1) {
       window.scale = window.scale + 0.25;
     }
-    window.initializeScale();
+    window.createScale();
   }
 });
