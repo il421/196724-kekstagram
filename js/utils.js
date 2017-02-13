@@ -1,10 +1,10 @@
 'use strict';
 
-window.utils = (function () {
+(function () {
   var ENTER_KEY_CODE = 13;
   var ESCAPE_KEY_CODE = 27;
 
-  return {
+  window.utils = {
     isActiavateEvent: function (evt) {
       return evt.keyCode && evt.keyCode === ENTER_KEY_CODE;
     },

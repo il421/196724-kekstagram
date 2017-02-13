@@ -1,11 +1,9 @@
 'use strict';
 
-window.uploadFile = document.querySelector('.upload-file');
+var uploadFile = document.querySelector('.upload-file');
 var filterControls = document.querySelector('.upload-filter-controls');
-var controlDec = document.querySelector('.upload-resize-controls-button-dec');
-var controlInc = document.querySelector('.upload-resize-controls-button-inc');
 
-window.enableSetup = (function () {
+(function () {
   var uploadOverlay = document.querySelector('.upload-overlay');
   var uploadFormCancel = document.querySelector('.upload-form-cancel');
   var uploadFormSubmit = document.querySelector('.upload-form-submit');
@@ -34,6 +32,17 @@ window.enableSetup = (function () {
     uploadFormCancel.setAttribute('aria-pressed', false);
   };
 
+  // OPEN FILTER
+  uploadFile.addEventListener('click', function () {
+    showSetupElement();
+  });
+
+  uploadFile.addEventListener('keydown', function (evt) {
+    if (window.utils.isActiavateEvent(evt)) {
+      showSetupElement();
+    }
+  });
+
   // CLOSE FILTER
   uploadFormCancel.addEventListener('click', function () {
     hideSetupElement();
@@ -55,23 +64,6 @@ window.enableSetup = (function () {
       submitElement();
     }
   });
-
-  return function () {
-    showSetupElement();
-  };
-})();
-
-(function () {
-  // OPEN FILTER
-  window.uploadFile.addEventListener('click', function () {
-    window.enableSetup();
-  });
-
-  window.uploadFile.addEventListener('keydown', function (evt) {
-    if (window.utils.isActiavateEvent(evt)) {
-      window.enableSetup();
-    }
-  });
 })();
 
 // SELECT FILTER
@@ -82,28 +74,3 @@ filterControls.addEventListener('keydown', function (evt) {
     window.initializeFilters(evt);
   }
 }, true);
-
-// CHANGE SCALE
-var max = 100;
-var min = 25;
-var step = 25;
-
-controlDec.addEventListener('click', function () {
-  if (window.valueDefault > min) {
-    window.valueDefault = (window.valueDefault - step);
-    if (window.scale > 0.25) {
-      window.scale = window.scale - 0.25;
-    }
-    window.createScale();
-  }
-});
-
-controlInc.addEventListener('click', function () {
-  if (window.valueDefault < max) {
-    window.valueDefault = (window.valueDefault + step);
-    if (window.scale < 1) {
-      window.scale = window.scale + 0.25;
-    }
-    window.createScale();
-  }
-});
