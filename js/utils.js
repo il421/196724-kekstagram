@@ -11,12 +11,6 @@ window.utils = (function () {
 
     isDisactiavateEvent: function (evt) {
       return evt.keyCode && evt.keyCode === ESCAPE_KEY_CODE;
-    },
-
-    keydownHendler: function (evt) {
-      if (evt.target !== document.querySelector('textarea') && this.isDisactiavateEvent(evt)) {
-        window.uploadOverlay.classList.add('invisible');
-      }
     }
   };
 })();
