@@ -1,7 +1,6 @@
 'use strict';
 
 var uploadFile = document.querySelector('.upload-file');
-var filterControls = document.querySelector('.upload-filter-controls');
 
 (function () {
   var uploadOverlay = document.querySelector('.upload-overlay');
@@ -65,12 +64,3 @@ var filterControls = document.querySelector('.upload-filter-controls');
     }
   });
 })();
-
-// SELECT FILTER
-filterControls.addEventListener('focus', window.initializeFilters, true);
-
-filterControls.addEventListener('keydown', function (evt) {
-  if (window.utils.isActiavateEvent(evt)) {
-    window.initializeFilters(evt);
-  }
-}, true);
