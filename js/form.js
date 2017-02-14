@@ -19,11 +19,13 @@ var uploadFile = document.querySelector('.upload-file');
     window.uploadFile.setAttribute('aria-pressed', true);
     uploadFormCancel.setAttribute('aria-pressed', false);
   };
-  var hideSetupElement = function () {
+  var hideSetupElement = function (callback) {
     uploadOverlay.classList.add('invisible');
     document.removeEventListener('keydown', keydownHendler);
     window.uploadFile.setAttribute('aria-pressed', false);
     uploadFormCancel.setAttribute('aria-pressed', true);
+
+    callback();
   };
   var submitElement = function () {
     uploadOverlay.classList.add('invisible');
@@ -49,7 +51,9 @@ var uploadFile = document.querySelector('.upload-file');
 
   uploadFormCancel.addEventListener('keydown', function (evt) {
     if (window.utils.isActiavateEvent(evt)) {
-      hideSetupElement();
+      hideSetupElement(function () {
+        uploadFile.focus();
+      });
     }
   });
 

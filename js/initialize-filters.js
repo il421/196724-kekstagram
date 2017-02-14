@@ -1,7 +1,7 @@
 'use strict';
+
 var photo = document.querySelector('.filter-image-preview');
 var filterControls = document.querySelector('.upload-filter-controls');
-
 
 // SELECT FILTER
 var changeFilters = function (callback) {
