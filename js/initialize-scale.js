@@ -12,26 +12,27 @@ var max = 100;
 var min = 25;
 var step = 25;
 
-var increaseScale = controlInc.addEventListener('click', function () {
-  if (valueDefault < max && scale < 1) {
-    valueDefault = valueDefault + step;
-    scale = scale + 0.25;
-  }
-  changeScale();
-});
-
-var decreaseScale = controlDec.addEventListener('click', function () {
-  if (valueDefault > min && scale > 0.25) {
-    valueDefault = valueDefault - step;
-    scale = scale - 0.25;
-  }
-  changeScale();
-});
-
 // ФУНКЦИЯ ОБРАТНОГО ВЫЗОВА
-var changeScale = function (callback1, callback2) {
-  controlValue.value = valueDefault + '%';
-  photo.style.transform = 'scale(' + (scale) + ')';
+var changeScale = function (callback) {
+
+  controlDec.addEventListener('click', function () {
+    if (valueDefault > min && scale > 0.25) {
+      valueDefault = valueDefault - step;
+      scale = scale - 0.25;
+    }
+    callback();
+  });
+
+  controlInc.addEventListener('click', function () {
+    if (valueDefault < max && scale < 1) {
+      valueDefault = valueDefault + step;
+      scale = scale + 0.25;
+    }
+    callback();
+  });
 };
 
-changeScale(increaseScale, decreaseScale);
+changeScale(function () {
+  controlValue.value = valueDefault + '%';
+  photo.style.transform = 'scale(' + (scale) + ')';
+});
