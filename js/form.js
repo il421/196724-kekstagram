@@ -23,7 +23,6 @@
     document.removeEventListener('keydown', keydownHendler);
     uploadFile.setAttribute('aria-pressed', false);
     uploadFormCancel.setAttribute('aria-pressed', true);
-
     callback();
   };
   var submitElement = function () {
