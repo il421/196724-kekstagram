@@ -1,8 +1,7 @@
 'use strict';
 
-var uploadFile = document.querySelector('.upload-file');
-
 (function () {
+  var uploadFile = document.querySelector('.upload-file');
   var uploadOverlay = document.querySelector('.upload-overlay');
   var uploadFormCancel = document.querySelector('.upload-form-cancel');
   var uploadFormSubmit = document.querySelector('.upload-form-submit');
@@ -16,13 +15,13 @@ var uploadFile = document.querySelector('.upload-file');
   var showSetupElement = function () {
     uploadOverlay.classList.remove('invisible');
     document.addEventListener('keydown', keydownHendler);
-    window.uploadFile.setAttribute('aria-pressed', true);
+    uploadFile.setAttribute('aria-pressed', true);
     uploadFormCancel.setAttribute('aria-pressed', false);
   };
   var hideSetupElement = function (callback) {
     uploadOverlay.classList.add('invisible');
     document.removeEventListener('keydown', keydownHendler);
-    window.uploadFile.setAttribute('aria-pressed', false);
+    uploadFile.setAttribute('aria-pressed', false);
     uploadFormCancel.setAttribute('aria-pressed', true);
 
     callback();
