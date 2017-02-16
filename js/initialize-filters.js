@@ -6,10 +6,6 @@
   window.changeFilters = function (callback) {
     filterControls.addEventListener('focus', callback, true);
 
-    filterControls.addEventListener('keydown', function (evt) {
-      if (window.utils.isActiavateEvent(evt)) {
-        callback(evt);
-      }
-    }, true);
+    filterControls.addEventListener('keydown', callback, true);
   };
 })();

@@ -78,5 +78,9 @@
   // SELECT FILTER AND CALLBACK
   window.changeFilters(function (evt) {
     photo.className = 'filter-image-preview ' + evt.target['htmlFor'].substring(7);
+
+    if (window.utils.isActiavateEvent(evt)) {
+      photo.className = 'filter-image-preview ' + evt.target['htmlFor'].substring(7);
+    }
   });
 })();
