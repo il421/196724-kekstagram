@@ -4,7 +4,7 @@
   var photo = document.querySelector('.filter-image-preview');
   var filterControls = document.querySelector('.upload-filter-controls');
 
-  // SELECT FILTER
+  // SELECT FILTER AND CALLBACK
   var changeFilters = function (callback) {
     filterControls.addEventListener('focus', callback, true);
 

@@ -42,7 +42,7 @@
     }
   });
 
-  // CLOSE FILTER
+  // CLOSE FILTER AND FOCUS CALLBACK
   uploadFormCancel.addEventListener('click', function () {
     hideSetupElement();
   });

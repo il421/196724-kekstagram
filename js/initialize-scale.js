@@ -13,6 +13,8 @@
   var min = 25;
   var step = 25;
 
+  // CHANGE SCALE AND CALLBACK
+
   var changeScale = function (callback) {
 
     controlDec.addEventListener('click', function () {
