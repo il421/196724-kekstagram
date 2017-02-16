@@ -71,25 +71,8 @@
 
   // CHANGE SCALE AND CALLBACK
   window.changeScale(function () {
-    var valueDefault = 100;
-    var scale = 1;
-    var max = 100;
-    var min = 25;
-    var step = 25;
-
-    if (valueDefault > min && scale > 0.25) {
-      valueDefault = valueDefault - step;
-      scale = scale - 0.25;
-      controlValue.value = valueDefault + '%';
-      photo.style.transform = 'scale(' + (scale) + ')';
-    }
-
-    if (valueDefault < max && scale < 1) {
-      valueDefault = valueDefault + step;
-      scale = scale + 0.25;
-      controlValue.value = valueDefault + '%';
-      photo.style.transform = 'scale(' + (scale) + ')';
-    }
+    controlValue.value = window.valueDefault + '%';
+    photo.style.transform = 'scale(' + (window.scale) + ')';
   });
 
   // SELECT FILTER AND CALLBACK
