@@ -6,6 +6,9 @@
   var uploadFormCancel = document.querySelector('.upload-form-cancel');
   var uploadFormSubmit = document.querySelector('.upload-form-submit');
 
+  var photo = document.querySelector('.filter-image-preview');
+  var controlValue = document.querySelector('.upload-resize-controls-value');
+
   var keydownHendler = function (evt) {
     if (evt.target !== document.querySelector('textarea') && window.utils.isDisactiavateEvent(evt)) {
       uploadOverlay.classList.add('invisible');
@@ -64,5 +67,16 @@
     if (window.utils.isActiavateEvent(evt)) {
       submitElement();
     }
+  });
+
+  // CHANGE SCALE AND CALLBACK
+  window.changeScale(function () {
+    controlValue.value = window.valueDefault + '%';
+    photo.style.transform = 'scale(' + (window.scale) + ')';
+  });
+
+  // SELECT FILTER AND CALLBACK
+  window.changeFilters(function (evt) {
+    photo.className = 'filter-image-preview ' + evt.target['htmlFor'].substring(7);
   });
 })();
