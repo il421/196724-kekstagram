@@ -1,4 +1,6 @@
 'use strict';
+var valueDefault = 100;
+var scale = 1;
 
 (function () {
   var uploadFile = document.querySelector('.upload-file');
@@ -70,9 +72,26 @@
   });
 
   // CHANGE SCALE AND CALLBACK
-  window.changeScale(function () {
-    controlValue.value = window.valueDefault + '%';
-    photo.style.transform = 'scale(' + (window.scale) + ')';
+  var max = 100;
+  var min = 25;
+  var step = 25;
+
+  window.decreaseScale(function () {
+    if (valueDefault > min && scale > 0.25) {
+      valueDefault = valueDefault - step;
+      scale = scale - 0.25;
+      controlValue.value = window.valueDefault + '%';
+      photo.style.transform = 'scale(' + (window.scale) + ')';
+    }
+  });
+
+  window.increaseScale(function () {
+    if (valueDefault < max && scale < 1) {
+      valueDefault = valueDefault + step;
+      scale = scale + 0.25;
+      controlValue.value = window.valueDefault + '%';
+      photo.style.transform = 'scale(' + (window.scale) + ')';
+    }
   });
 
   // SELECT FILTER AND CALLBACK
