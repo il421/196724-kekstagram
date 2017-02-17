@@ -1,10 +1,15 @@
 'use strict';
+var valueDefault = 100;
+var scale = 1;
 
 (function () {
   var uploadFile = document.querySelector('.upload-file');
   var uploadOverlay = document.querySelector('.upload-overlay');
   var uploadFormCancel = document.querySelector('.upload-form-cancel');
   var uploadFormSubmit = document.querySelector('.upload-form-submit');
+
+  var photo = document.querySelector('.filter-image-preview');
+  var controlValue = document.querySelector('.upload-resize-controls-value');
 
   var keydownHendler = function (evt) {
     if (evt.target !== document.querySelector('textarea') && window.utils.isDisactiavateEvent(evt)) {
@@ -23,7 +28,6 @@
     document.removeEventListener('keydown', keydownHendler);
     uploadFile.setAttribute('aria-pressed', false);
     uploadFormCancel.setAttribute('aria-pressed', true);
-
     callback();
   };
   var submitElement = function () {
@@ -43,7 +47,7 @@
     }
   });
 
-  // CLOSE FILTER
+  // CLOSE FILTER AND FOCUS CALLBACK
   uploadFormCancel.addEventListener('click', function () {
     hideSetupElement();
   });
@@ -64,6 +68,38 @@
   uploadFormSubmit.addEventListener('keydown', function (evt) {
     if (window.utils.isActiavateEvent(evt)) {
       submitElement();
+    }
+  });
+
+  // CHANGE SCALE AND CALLBACK
+  var max = 100;
+  var min = 25;
+  var step = 25;
+
+  window.decreaseScale(function () {
+    if (valueDefault > min && scale > 0.25) {
+      valueDefault = valueDefault - step;
+      scale = scale - 0.25;
+      controlValue.value = window.valueDefault + '%';
+      photo.style.transform = 'scale(' + (window.scale) + ')';
+    }
+  });
+
+  window.increaseScale(function () {
+    if (valueDefault < max && scale < 1) {
+      valueDefault = valueDefault + step;
+      scale = scale + 0.25;
+      controlValue.value = window.valueDefault + '%';
+      photo.style.transform = 'scale(' + (window.scale) + ')';
+    }
+  });
+
+  // SELECT FILTER AND CALLBACK
+  window.changeFilters(function (evt) {
+    photo.className = 'filter-image-preview ' + evt.target['htmlFor'].substring(7);
+
+    if (window.utils.isActiavateEvent(evt)) {
+      photo.className = 'filter-image-preview ' + evt.target['htmlFor'].substring(7);
     }
   });
 })();
