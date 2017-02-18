@@ -23,4 +23,9 @@ window.load(function (evt) {
   for (var i = 0; i < data.length; i++) {
     renderItem(i);
   }
+
+  galleryOfPictures.addEventListener('click', function (event) {
+    event.preventDefault();
+    window.showGallery();
+  });
 });
