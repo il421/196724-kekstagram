@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-  window.showGallery = function (image, like, comment) {
+  window.showGallery = function (image, comment, like) {
     var openedGallery = document.querySelector('.gallery-overlay');
     var closeGallery = openedGallery.querySelector('.gallery-overlay-close');
     var galleryImage = openedGallery.querySelector('.gallery-overlay-image');

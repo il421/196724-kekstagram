@@ -30,4 +30,10 @@ window.load(function (evt) {
   galleryOfPictures.addEventListener('click', function (evt) {
     window.showGallery((evt.target.attributes['0'].value), (evt.target.nextElementSibling.firstElementChild.innerText), (evt.target.nextElementSibling.lastElementChild.innerText));
   });
+
+  galleryOfPictures.addEventListener('keydown', function (evt) {
+    if (window.utils.isActiavateEvent(evt)) {
+      window.showGallery((evt.target.childNodes[1].attributes['0'].value), (evt.target.childNodes[3].firstElementChild.innerText), (evt.target.childNodes[3].lastElementChild.innerText));
+    }
+  });
 })();
