@@ -25,10 +25,9 @@ window.load(function (evt) {
     renderItem(i);
   }
 });
-
 // OPEN DIALOG
 (function () {
   galleryOfPictures.addEventListener('click', function (evt) {
-    window.showGallery((evt.target.attributes['0'].value), (evt.target.nextElementSibling.lastElementChild.innerText));
+    window.showGallery((evt.target.attributes['0'].value), (evt.target.nextElementSibling.firstElementChild.innerText), (evt.target.nextElementSibling.lastElementChild.innerText));
   });
 })();

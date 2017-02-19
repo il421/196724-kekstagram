@@ -1,12 +1,12 @@
 'use strict';
 
 (function () {
-  window.showGallery = function (image, like) {
+  window.showGallery = function (image, like, comment) {
     var openedGallery = document.querySelector('.gallery-overlay');
     var closeGallery = openedGallery.querySelector('.gallery-overlay-close');
     var galleryImage = openedGallery.querySelector('.gallery-overlay-image');
     var galleryLike = openedGallery.querySelector('.likes-count');
-    // var galleryComment = openedGallery.querySelector('.gallery-overlay-controls-comments');
+    var galleryComment = openedGallery.querySelector('.comments-count');
 
     var keydownHendler = function (evt) {
       if (window.utils.isDisactiavateEvent(evt)) {
@@ -37,6 +37,6 @@
     // FILL IN DIALOG
     galleryImage.setAttribute('src', image);
     galleryLike.textContent = like;
-    // galleryComment.textContent = comment;
+    galleryComment.textContent = comment;
   };
 })();
