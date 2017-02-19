@@ -4,7 +4,7 @@
   window.showGallery = function (image) {
     var openedGallery = document.querySelector('.gallery-overlay');
     var closeGallery = openedGallery.querySelector('.gallery-overlay-close');
-    var galleryImage = openedGallery.querySelector('.gallery-overlay-image');
+    // var galleryImage = openedGallery.querySelector('.gallery-overlay-image');
     // var galleryLike = openedGallary.querySelector('.gallery-overlay-controls-like');
     // var galleryComment = openedGallary.querySelector('.gallery-overlay-controls-comments');
 
