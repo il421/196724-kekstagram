@@ -10,22 +10,23 @@ window.load(function (evt) {
     galleryOfPictures.appendChild(pictureTemplateToClone.cloneNode(true));
   });
 
-  var imageTemplate = document.querySelectorAll('.picture img');
-  var commentsTemplate = document.querySelectorAll('.picture-comments');
-  var likesTemplate = document.querySelectorAll('.picture-likes');
+  var imageCreated = galleryOfPictures.querySelectorAll('.picture img');
+  var commentsCreated = galleryOfPictures.querySelectorAll('.picture-comments');
+  var likesCreated = galleryOfPictures.querySelectorAll('.picture-likes');
 
   var renderItem = function (i) {
-    imageTemplate[i].setAttribute('src', data[i].url);
-    commentsTemplate[i].textContent = data[i].comments;
-    likesTemplate[i].textContent = data[i].likes;
+    imageCreated[i].setAttribute('src', data[i].url);
+    commentsCreated[i].textContent = data[i].comments;
+    likesCreated[i].textContent = data[i].likes;
   };
 
   for (var i = 0; i < data.length; i++) {
     renderItem(i);
   }
-
-  galleryOfPictures.addEventListener('click', function (event) {
-    event.preventDefault();
-    window.showGallery();
-  });
 });
+
+(function () {
+  galleryOfPictures.addEventListener('click', function (evt) {
+    window.showGallery(evt.target);
+  });
+})();
