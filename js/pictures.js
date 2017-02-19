@@ -26,7 +26,7 @@ window.load(function (evt) {
 });
 
 (function () {
-  galleryOfPictures.addEventListener('click', function () {
-    window.showGallery();
+  galleryOfPictures.addEventListener('click', function (evt) {
+    window.showGallery(evt.target.attributes['0'].value, evt.target.nextElementSibling.lastElementChild.innerText);
   });
 })();
