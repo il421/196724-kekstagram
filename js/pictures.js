@@ -3,6 +3,7 @@ var pictureTemplate = document.querySelector('#picture-template');
 var pictureTemplateToClone = pictureTemplate.content.querySelector('.picture');
 var galleryOfPictures = document.querySelector('.pictures');
 
+// LOAD PICTURES
 window.load(function (evt) {
   var data = JSON.parse(evt.target.response);
 
@@ -25,8 +26,9 @@ window.load(function (evt) {
   }
 });
 
+// OPEN DIALOG
 (function () {
   galleryOfPictures.addEventListener('click', function (evt) {
-    window.showGallery(evt.target.attributes['0'].value, evt.target.nextElementSibling.lastElementChild.innerText);
+    window.showGallery((evt.target.attributes['0'].value), (evt.target.nextElementSibling.lastElementChild.innerText));
   });
 })();

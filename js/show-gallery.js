@@ -34,8 +34,9 @@
       }
     });
 
+    // FILL IN DIALOG
     galleryImage.setAttribute('src', image);
-    // galleryComment.textContent = comment;
     galleryLike.textContent = like;
+    // galleryComment.textContent = comment;
   };
 })();
