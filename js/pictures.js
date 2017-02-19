@@ -26,7 +26,7 @@ window.load(function (evt) {
 });
 
 (function () {
-  galleryOfPictures.addEventListener('click', function (evt) {
-    window.showGallery(evt.target);
+  galleryOfPictures.addEventListener('click', function () {
+    window.showGallery();
   });
 })();

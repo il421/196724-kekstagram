@@ -33,7 +33,5 @@
         hideGalleryElement();
       }
     });
-
-    galleryImage.setAttribute('src', image);
   };
 })();
