@@ -30,7 +30,7 @@ window.load(function (evt) {
 // OPEN DIALOG
 (function () {
   galleryOfPictures.addEventListener('click', function (evt) {
-    window.showGallery();
+    window.showGallery((evt.target.attributes['0'].value), (evt.target.nextElementSibling.firstElementChild.innerText), (evt.target.nextElementSibling.lastElementChild.innerText));
   });
 
   galleryOfPictures.addEventListener('keydown', function (evt) {
