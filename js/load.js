@@ -1,5 +1,3 @@
 'use strict';
 
-window.load = function () {
-
-};
+window.load = new XMLHttpRequest();
