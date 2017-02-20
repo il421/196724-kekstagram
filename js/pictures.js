@@ -6,7 +6,8 @@ var galleryOfPictures = document.querySelector('.pictures');
 // OPEN DIALOG
 (function () {
   galleryOfPictures.addEventListener('click', function (evt) {
-    window.showGallery((evt.target.attributes['0'].value), (evt.target.nextElementSibling.firstElementChild.innerText), (evt.target.nextElementSibling.lastElementChild.innerText));
+    var nextSibling = evt.target.nextElementSibling;
+    window.showGallery((evt.target.attributes['0'].value), (nextSibling.firstElementChild.innerText), (nextSibling.lastElementChild.innerText));
   });
 
   galleryOfPictures.addEventListener('keydown', function (evt) {
