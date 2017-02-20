@@ -31,6 +31,8 @@ window.load(function (evt) {
   var commentsCreated = galleryOfPictures.querySelectorAll('.picture-comments');
   var likesCreated = galleryOfPictures.querySelectorAll('.picture-likes');
 
+  var filtersOfPictures = document.querySelector('.filters');
+
   var renderItem = function (i) {
     var dataArr = data[i];
     imageCreated[i].setAttribute('src', dataArr.url);
@@ -41,4 +43,6 @@ window.load(function (evt) {
   for (var i = 0; i < data.length; i++) {
     renderItem(i);
   }
+
+  filtersOfPictures.classList.remove('hidden');
 });
