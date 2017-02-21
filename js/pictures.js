@@ -31,31 +31,56 @@ window.load(function (evt) {
   var commentsCreated = document.querySelectorAll('.picture-comments');
   var likesCreated = document.querySelectorAll('.picture-likes');
 
-  var renderItem = function (i) {
-    var dataArr = data[i];
-    imageCreated[i].setAttribute('src', dataArr.url);
-    commentsCreated[i].textContent = dataArr.comments.length;
-    likesCreated[i].textContent = dataArr.likes;
+  var filterDiscussed = document.querySelector('#filter-discussed');
+  var filterPopular = document.querySelector('#filter-popular');
+  var filterNew = document.querySelector('#filter-new');
+
+  var renderItem = function (i, arr) {
+    imageCreated[i].setAttribute('src', arr[i].url);
+    commentsCreated[i].textContent = arr[i].comments.length;
+    likesCreated[i].textContent = arr[i].likes;
+  };
+
+  var picturesDiscussed = function (imageA, imageB) {
+    return imageB.comments.length - imageA.comments.length;
+  };
+
+  var picturesNew = function () {
+
   };
 
   for (var i = 0; i < data.length; i++) {
-    renderItem(i);
+    renderItem(i, data);
   }
 
-  // SORT AND FILTER
-  var filtersOfPictures = document.querySelector('.filters');
-  // var filterPopular = document.querySelector('#filter-popular');
-  // var filterNew = document.querySelector('#filter-new');
-  var filterDiscussed = document.querySelector('#filter-discussed');
-  var picturesInGallery = document.querySelectorAll('.picture');
-
-  var sortPicturesDiscussed = picturesInGallery.sort(function (left, right) {
-    return (picturesInGallery['left'].lastElementChild.firstElementChild.innerText) - (picturesInGallery['right'].lastElementChild.firstElementChild.innerText);
+  filterPopular.addEventListener('click', function () {
+    for (i = 0; i < data.length; i++) {
+      renderItem(i, data);
+    }
   });
 
-  filtersOfPictures.classList.remove('hidden');
+  filterNew.addEventListener('click', function () {
+    for (i = 0; i < data.length; i++) {
+      var dataNew = data.map(picturesNew);
+      renderItem(i, dataNew);
+    }
+  });
 
   filterDiscussed.addEventListener('click', function () {
-    picturesInGallery.forEach(sortPicturesDiscussed);
+    for (i = 0; i < data.length; i++) {
+      var dataDiscussed = data.concat().sort(picturesDiscussed);
+      renderItem(i, dataDiscussed);
+    }
   });
+
+  // SHOW FILTERS
+  var filtersOfPictures = document.querySelector('.filters');
+  filtersOfPictures.classList.remove('hidden');
 });
+
+
+//
+// for (i = 0; i < 16; i++) {
+//   var randomElementIndex = Math.floor(Math.random() * picturesInGallery.length);
+//   galleryOfPictures.removeChild(picturesInGallery[randomElementIndex]);
+// }
