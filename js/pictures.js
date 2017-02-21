@@ -19,10 +19,10 @@ var galleryOfPictures = document.querySelector('.pictures');
   });
 })();
 
-// LOAD PICTURES
 window.load(function (evt) {
   var data = JSON.parse(evt.target.response);
 
+// LOAD PICTURES
   data.forEach(function () {
     galleryOfPictures.appendChild(pictureTemplateToClone.cloneNode(true));
   });
@@ -31,6 +31,7 @@ window.load(function (evt) {
   var commentsCreated = document.querySelectorAll('.picture-comments');
   var likesCreated = document.querySelectorAll('.picture-likes');
 
+  var filtersOfPictures = document.querySelector('.filters');
   var filterDiscussed = document.querySelector('#filter-discussed');
   var filterPopular = document.querySelector('#filter-popular');
   var filterNew = document.querySelector('#filter-new');
@@ -41,24 +42,29 @@ window.load(function (evt) {
     likesCreated[i].textContent = arr[i].likes;
   };
 
-  var picturesDiscussed = function (imageA, imageB) {
+  var picturesDiscussed = data.concat().sort(function (imageA, imageB) {
     return imageB.comments.length - imageA.comments.length;
-  };
+  });
 
-  var picturesNew = function () {
+  var picturesNew = data.map(function () {
 
-  };
+  });
 
   for (var i = 0; i < data.length; i++) {
     renderItem(i, data);
   }
 
+// SHOW FILTERS
+  filtersOfPictures.classList.remove('hidden');
+
+// FILTER POPULAR
   filterPopular.addEventListener('click', function () {
     for (i = 0; i < data.length; i++) {
       renderItem(i, data);
     }
   });
 
+// FILTER NEW
   filterNew.addEventListener('click', function () {
     for (i = 0; i < data.length; i++) {
       var dataNew = data.map(picturesNew);
@@ -66,21 +72,10 @@ window.load(function (evt) {
     }
   });
 
+// FILTER DISCUSSED
   filterDiscussed.addEventListener('click', function () {
     for (i = 0; i < data.length; i++) {
-      var dataDiscussed = data.concat().sort(picturesDiscussed);
-      renderItem(i, dataDiscussed);
+      renderItem(i, picturesDiscussed);
     }
   });
-
-  // SHOW FILTERS
-  var filtersOfPictures = document.querySelector('.filters');
-  filtersOfPictures.classList.remove('hidden');
 });
-
-
-//
-// for (i = 0; i < 16; i++) {
-//   var randomElementIndex = Math.floor(Math.random() * picturesInGallery.length);
-//   galleryOfPictures.removeChild(picturesInGallery[randomElementIndex]);
-// }
