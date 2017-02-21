@@ -42,20 +42,20 @@ window.load(function (evt) {
     renderItem(i);
   }
 
-  // SORT AND FILTERS
+  // SORT AND FILTER
   var filtersOfPictures = document.querySelector('.filters');
   // var filterPopular = document.querySelector('#filter-popular');
   // var filterNew = document.querySelector('#filter-new');
   var filterDiscussed = document.querySelector('#filter-discussed');
   var picturesInGallery = document.querySelectorAll('.picture');
 
-  filtersOfPictures.classList.remove('hidden');
-
-  var sortPicturesPipular = picturesInGallery.sort(function (left, right) {
+  var sortPicturesDiscussed = picturesInGallery.sort(function (left, right) {
     return (picturesInGallery['left'].lastElementChild.firstElementChild.innerText) - (picturesInGallery['right'].lastElementChild.firstElementChild.innerText);
   });
 
+  filtersOfPictures.classList.remove('hidden');
+
   filterDiscussed.addEventListener('click', function () {
-    picturesInGallery.forEach(sortPicturesPipular);
+    picturesInGallery.forEach(sortPicturesDiscussed);
   });
 });
