@@ -69,7 +69,7 @@ window.load(function (evt) {
 // FILTER NEW
   filterNew.addEventListener('click', function () {
     for (i = 0; i < 16; i++) {
-      cleanItem(i);
+      cleanItem(Math.floor(Math.random() * data.length));
     }
   });
 
