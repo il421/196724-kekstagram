@@ -42,12 +42,14 @@ window.load(function (evt) {
     likesCreated[i].textContent = arr[i].likes;
   };
 
+  var cleanItem = function (i) {
+    imageCreated[i].removeAttribute('src');
+    commentsCreated[i].textContent = null;
+    likesCreated[i].textContent = null;
+  };
+
   var picturesDiscussed = data.concat().sort(function (imageA, imageB) {
     return imageB.comments.length - imageA.comments.length;
-  });
-
-  var picturesNew = data.map(function () {
-
   });
 
   for (var i = 0; i < data.length; i++) {
@@ -66,15 +68,15 @@ window.load(function (evt) {
 
 // FILTER NEW
   filterNew.addEventListener('click', function () {
-    for (i = 0; i < data.length; i++) {
-      var dataNew = data.map(picturesNew);
-      renderItem(i, dataNew);
+    for (i = 0; i < 16; i++) {
+      cleanItem(i);
     }
   });
 
 // FILTER DISCUSSED
   filterDiscussed.addEventListener('click', function () {
     for (i = 0; i < data.length; i++) {
+      cleanItem(i);
       renderItem(i, picturesDiscussed);
     }
   });
