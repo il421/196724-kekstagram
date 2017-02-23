@@ -46,9 +46,21 @@ window.load(function (evt) {
     return imageB.comments.length - imageA.comments.length;
   });
 
-  var picturesNew = data.map(function () {
+  var test = data.concat().splice(10);
 
+  var getRandomElement = function (array) {
+    var randomElementIndex = Math.floor(Math.random() * array.length);
+    return array[randomElementIndex];
+  };
+
+
+  // FILTER NEW
+  filterNew.addEventListener('click', function () {
+    renderItem(i, test);
   });
+
+  console.log(test);
+
 
   for (var i = 0; i < data.length; i++) {
     renderItem(i, data);
@@ -61,14 +73,6 @@ window.load(function (evt) {
   filterPopular.addEventListener('click', function () {
     for (i = 0; i < data.length; i++) {
       renderItem(i, data);
-    }
-  });
-
-// FILTER NEW
-  filterNew.addEventListener('click', function () {
-    for (i = 0; i < data.length; i++) {
-      var dataNew = data.map(picturesNew);
-      renderItem(i, dataNew);
     }
   });
 
