@@ -48,9 +48,11 @@ window.load(function (evt) {
     return imageB.comments.length - imageA.comments.length;
   });
 
-  var dataNew = data.concat().splice(7, 10);
+  var dataNew = data.concat().sort(function (imageA, imageB) {
+    return Math.random() - 0.5;
+  });
 
-// SHOW FILTERS
+// SHOW PICTURES AND FILTERS
   filtersOfPictures.classList.remove('hidden');
   renderItem(data);
 
