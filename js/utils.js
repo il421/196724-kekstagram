@@ -11,6 +11,6 @@
 
     isDisactiavateEvent: function (evt) {
       return evt.keyCode && evt.keyCode === ESCAPE_KEY_CODE;
-    }
+    },
   };
 })();
