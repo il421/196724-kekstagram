@@ -16,6 +16,7 @@
   var filterPin = filterLine.querySelector('.upload-filter-level-pin');
   var filterVal = filterLine.querySelector('.upload-filter-level-val');
   var photoPreview = document.querySelector('.upload-form-preview');
+  var SIZE_OF_LINE = 456;
 
   var startPoint;
 
@@ -27,7 +28,6 @@
     };
 
     var positionX = filterPin.offsetLeft - shift.x;
-    var SIZE_OF_LINE = 456;
 
     if (positionX < 0) {
       positionX = 0;
