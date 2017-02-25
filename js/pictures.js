@@ -31,6 +31,8 @@ window.load(function (evt) {
   var filterDiscussed = document.querySelector('#filter-discussed');
   var filterPopular = document.querySelector('#filter-popular');
   var filterNew = document.querySelector('#filter-new');
+  var QUANTITY_OF_NEW_PICTURES = 10;
+  var UTILITY_OF_RANDOM = 0.5;
 
   var renderItem = function (arr) {
     var imageCreated = document.querySelectorAll('.picture img');
@@ -38,9 +40,10 @@ window.load(function (evt) {
     var likesCreated = document.querySelectorAll('.picture-likes');
 
     for (var i = 0; i < arr.length; i++) {
-      imageCreated[i].setAttribute('src', arr[i].url);
-      commentsCreated[i].textContent = arr[i].comments.length;
-      likesCreated[i].textContent = arr[i].likes;
+      var arrayData = arr[i];
+      imageCreated[i].setAttribute('src', arrayData.url);
+      commentsCreated[i].textContent = arrayData.comments.length;
+      likesCreated[i].textContent = arrayData.likes;
     }
   };
 
@@ -49,7 +52,7 @@ window.load(function (evt) {
   });
 
   var dataNew = data.concat().sort(function (imageA, imageB) {
-    return Math.random() - 0.5;
+    return Math.random() - UTILITY_OF_RANDOM;
   });
 
 // SHOW PICTURES AND FILTERS
@@ -74,7 +77,7 @@ window.load(function (evt) {
       galleryOfPictures.removeChild(galleryOfPictures.lastChild);
     }
 
-    for (var i = 0; i < 10; i++) {
+    for (var i = 0; i < QUANTITY_OF_NEW_PICTURES; i++) {
       galleryOfPictures.appendChild(pictureTemplateToClone.cloneNode(true));
     }
     renderItem(dataNew);
