@@ -2,16 +2,6 @@
 
 (function () {
   var filterControls = document.querySelector('.upload-filter-controls');
-
-  window.changeFilters = function (callback) {
-
-    filterControls.addEventListener('focus', callback, true);
-    filterControls.addEventListener('keydown', callback, true);
-  };
-})();
-
-// SLIDER OF FILTERS
-(function () {
   var filterLine = document.querySelector('.upload-filter-level-line');
   var filterPin = filterLine.querySelector('.upload-filter-level-pin');
   var filterVal = filterLine.querySelector('.upload-filter-level-val');
@@ -20,6 +10,15 @@
 
   var startPoint;
 
+  // CHANGE FILTERS
+
+  window.changeFilters = function (callback) {
+
+    filterControls.addEventListener('focus', callback, true);
+    filterControls.addEventListener('keydown', callback, true);
+  };
+
+  // SLIDER OF FILTERS
   var onMouseMove = function (evtMove) {
     evtMove.preventDefault();
 
