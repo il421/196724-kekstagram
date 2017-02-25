@@ -10,6 +10,7 @@ var scale = 1;
 
   var photo = document.querySelector('.filter-image-preview');
   var controlValue = document.querySelector('.upload-resize-controls-value');
+  var filterLevel = document.querySelector('.upload-filter-level');
 
   var keydownHendler = function (evt) {
     if (evt.target !== document.querySelector('textarea') && window.utils.isDisactiavateEvent(evt)) {
@@ -101,5 +102,7 @@ var scale = 1;
     if (window.utils.isActiavateEvent(evt)) {
       photo.className = 'filter-image-preview ' + evt.target['htmlFor'].substring(7);
     }
+
+    filterLevel.classList.remove(('invisible'));
   });
 })();
