@@ -9,3 +9,55 @@
     filterControls.addEventListener('keydown', callback, true);
   };
 })();
+
+// SLIDER OF FILTERS
+(function () {
+  var filterLine = document.querySelector('.upload-filter-level-line');
+  var filterPin = filterLine.querySelector('.upload-filter-level-pin');
+  var filterVal = filterLine.querySelector('.upload-filter-level-val');
+  var photoPreview = document.querySelector('.upload-form-preview');
+
+  var startPoint;
+
+  var onMouseMove = function (evtMove) {
+    evtMove.preventDefault();
+
+    var shift = {
+      x: startPoint.x - evtMove.clientX,
+    };
+
+    var positionX = filterPin.offsetLeft - shift.x;
+
+    if (positionX < 0) {
+      positionX = 0;
+    } else if (positionX > 455) {
+      positionX = 455;
+    }
+
+    filterPin.style.left = ((positionX * 100) / 455) + '%';
+    filterVal.style.width = ((positionX * 100) / 455) + '%';
+    photoPreview.style.filter = ' saturate(' + ((positionX * 100) / 455) + '%' + ')';
+
+    startPoint = {
+      x: evtMove.clientX,
+    };
+  };
+
+  var onMouseUp = function (evtUp) {
+    evtUp.preventDefault();
+
+    document.removeEventListener('mousemove', onMouseMove);
+    document.removeEventListener('mouseup', onMouseUp);
+  };
+
+  filterPin.addEventListener('mousedown', function (evt) {
+    evt.preventDefault();
+
+    startPoint = {
+      x: evt.clientX
+    };
+
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', onMouseUp);
+  });
+})();
