@@ -30,13 +30,13 @@
 
     if (positionX < 0) {
       positionX = 0;
-    } else if (positionX > 455) {
-      positionX = 455;
+    } else if (positionX > filterLine.offsetWidth) {
+      positionX = filterLine.offsetWidth;
     }
 
-    filterPin.style.left = ((positionX * 100) / 455) + '%';
-    filterVal.style.width = ((positionX * 100) / 455) + '%';
-    photoPreview.style.filter = ' saturate(' + ((positionX * 100) / 455) + '%' + ')';
+    filterPin.style.left = ((positionX * 100) / filterLine.offsetWidth) + '%';
+    filterVal.style.width = ((positionX * 100) / filterLine.offsetWidth) + '%';
+    photoPreview.style.filter = ' saturate(' + ((positionX * 100) / filterLine.offsetWidth) + '%' + ')';
 
     startPoint = {
       x: evtMove.clientX,
