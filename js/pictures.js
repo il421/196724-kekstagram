@@ -31,6 +31,7 @@ window.load(function (evt) {
   var filterDiscussed = document.querySelector('#filter-discussed');
   var filterPopular = document.querySelector('#filter-popular');
   var filterNew = document.querySelector('#filter-new');
+
   var QUANTITY_OF_NEW_PICTURES = 10;
   var UTILITY_OF_RANDOM = 0.5;
 
@@ -39,7 +40,7 @@ window.load(function (evt) {
     var commentsCreated = document.querySelectorAll('.picture-comments');
     var likesCreated = document.querySelectorAll('.picture-likes');
 
-    for (var i = 0; i < arr.length; i++) {
+    for (var i = 0; i < imageCreated.length; i++) {
       var arrayData = arr[i];
       imageCreated[i].setAttribute('src', arrayData.url);
       commentsCreated[i].textContent = arrayData.comments.length;
