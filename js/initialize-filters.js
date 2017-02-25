@@ -27,16 +27,17 @@
     };
 
     var positionX = filterPin.offsetLeft - shift.x;
+    var sizeOfLine = 456;
 
     if (positionX < 0) {
       positionX = 0;
-    } else if (positionX > filterLine.offsetWidth) {
-      positionX = filterLine.offsetWidth;
+    } else if (positionX > sizeOfLine) {
+      positionX = sizeOfLine;
     }
 
-    filterPin.style.left = ((positionX * 100) / filterLine.offsetWidth) + '%';
-    filterVal.style.width = ((positionX * 100) / filterLine.offsetWidth) + '%';
-    photoPreview.style.filter = ' saturate(' + ((positionX * 100) / filterLine.offsetWidth) + '%' + ')';
+    filterPin.style.left = ((positionX * 100) / sizeOfLine) + '%';
+    filterVal.style.width = ((positionX * 100) / sizeOfLine) + '%';
+    photoPreview.style.filter = ' saturate(' + ((positionX * 100) / sizeOfLine) + '%' + ')';
 
     startPoint = {
       x: evtMove.clientX,
