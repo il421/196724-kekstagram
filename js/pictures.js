@@ -19,26 +19,80 @@ var galleryOfPictures = document.querySelector('.pictures');
   });
 })();
 
-// LOAD PICTURES
 window.load(function (evt) {
   var data = JSON.parse(evt.target.response);
 
+// LOAD PICTURES
   data.forEach(function () {
     galleryOfPictures.appendChild(pictureTemplateToClone.cloneNode(true));
   });
 
-  var imageCreated = galleryOfPictures.querySelectorAll('.picture img');
-  var commentsCreated = galleryOfPictures.querySelectorAll('.picture-comments');
-  var likesCreated = galleryOfPictures.querySelectorAll('.picture-likes');
+  var filtersOfPictures = document.querySelector('.filters');
+  var filterDiscussed = document.querySelector('#filter-discussed');
+  var filterPopular = document.querySelector('#filter-popular');
+  var filterNew = document.querySelector('#filter-new');
 
-  var renderItem = function (i) {
-    var dataArr = data[i];
-    imageCreated[i].setAttribute('src', dataArr.url);
-    commentsCreated[i].textContent = dataArr.comments.length;
-    likesCreated[i].textContent = dataArr.likes;
+  var QUANTITY_OF_NEW_PICTURES = 10;
+  var UTILITY_OF_RANDOM = 0.5;
+
+  var renderItem = function (arr) {
+    var imageCreated = document.querySelectorAll('.picture img');
+    var commentsCreated = document.querySelectorAll('.picture-comments');
+    var likesCreated = document.querySelectorAll('.picture-likes');
+
+    for (var i = 0; i < imageCreated.length; i++) {
+      var arrayData = arr[i];
+      imageCreated[i].setAttribute('src', arrayData.url);
+      commentsCreated[i].textContent = arrayData.comments.length;
+      likesCreated[i].textContent = arrayData.likes;
+    }
   };
 
-  for (var i = 0; i < data.length; i++) {
-    renderItem(i);
-  }
+  var dataDiscussed = data.concat().sort(function (imageA, imageB) {
+    return imageB.comments.length - imageA.comments.length;
+  });
+
+  var dataNew = data.concat().sort(function (imageA, imageB) {
+    return Math.random() - UTILITY_OF_RANDOM;
+  });
+
+// SHOW PICTURES AND FILTERS
+  filtersOfPictures.classList.remove('hidden');
+  renderItem(data);
+
+// FILTER POPULAR
+  filterPopular.addEventListener('click', function () {
+    while (galleryOfPictures.lastChild) {
+      galleryOfPictures.removeChild(galleryOfPictures.lastChild);
+    }
+
+    data.forEach(function () {
+      galleryOfPictures.appendChild(pictureTemplateToClone.cloneNode(true));
+    });
+    renderItem(data);
+  });
+
+// FILTER NEW
+  filterNew.addEventListener('click', function () {
+    while (galleryOfPictures.lastChild) {
+      galleryOfPictures.removeChild(galleryOfPictures.lastChild);
+    }
+
+    for (var i = 0; i < QUANTITY_OF_NEW_PICTURES; i++) {
+      galleryOfPictures.appendChild(pictureTemplateToClone.cloneNode(true));
+    }
+    renderItem(dataNew);
+  });
+
+// FILTER DISCUSSED
+  filterDiscussed.addEventListener('click', function () {
+    while (galleryOfPictures.lastChild) {
+      galleryOfPictures.removeChild(galleryOfPictures.lastChild);
+    }
+
+    data.forEach(function () {
+      galleryOfPictures.appendChild(pictureTemplateToClone.cloneNode(true));
+    });
+    renderItem(dataDiscussed);
+  });
 });

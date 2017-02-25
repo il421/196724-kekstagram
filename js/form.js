@@ -71,7 +71,7 @@ var scale = 1;
     }
   });
 
-  // CHANGE SCALE AND CALLBACK
+  // CHANGE SCALE
   var max = 100;
   var min = 25;
   var step = 25;
@@ -94,7 +94,7 @@ var scale = 1;
     }
   });
 
-  // SELECT FILTER AND CALLBACK
+  // SELECT FILTER
   window.changeFilters(function (evt) {
     photo.className = 'filter-image-preview ' + evt.target['htmlFor'].substring(7);
 
