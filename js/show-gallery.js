@@ -1,26 +1,26 @@
 'use strict';
 
 (function () {
-  window.showGallery = function (image, comment, like) {
-    var openedGallery = document.querySelector('.gallery-overlay');
-    var closeGallery = openedGallery.querySelector('.gallery-overlay-close');
-    var galleryImage = openedGallery.querySelector('.gallery-overlay-image');
-    var galleryLike = openedGallery.querySelector('.likes-count');
-    var galleryComment = openedGallery.querySelector('.comments-count');
+  var openedGallery = document.querySelector('.gallery-overlay');
+  var closeGallery = openedGallery.querySelector('.gallery-overlay-close');
+  var galleryImage = openedGallery.querySelector('.gallery-overlay-image');
+  var galleryLike = openedGallery.querySelector('.likes-count');
+  var galleryComment = openedGallery.querySelector('.comments-count');
 
-    var keydownHendler = function (evt) {
+  window.showGallery = function (image, comment, like) {
+    var keydownHandler = function (evt) {
       if (window.utils.isDisactiavateEvent(evt)) {
         openedGallery.classList.add('invisible');
       }
     };
     var hideGalleryElement = function () {
       openedGallery.classList.add('invisible');
-      window.removeEventListener('keydown', keydownHendler);
+      window.removeEventListener('keydown', keydownHandler);
     };
 
     // OPEN GALLERY
     openedGallery.classList.remove('invisible');
-    document.addEventListener('keydown', keydownHendler);
+    document.addEventListener('keydown', keydownHandler);
     event.preventDefault();
 
     // CLOSE GALLERY
