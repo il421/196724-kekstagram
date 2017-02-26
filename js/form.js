@@ -30,12 +30,11 @@
     uploadFile.setAttribute('aria-pressed', true);
     uploadFormCancel.setAttribute('aria-pressed', false);
   };
-  var hideSetupElement = function (callback) {
+  var hideSetupElement = function () {
     uploadOverlay.classList.add('invisible');
     document.removeEventListener('keydown', keydownHandler);
     uploadFile.setAttribute('aria-pressed', false);
     uploadFormCancel.setAttribute('aria-pressed', true);
-    callback();
   };
   var submitElement = function () {
     uploadOverlay.classList.add('invisible');
