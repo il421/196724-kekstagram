@@ -1,9 +1,10 @@
 'use strict';
 
 (function () {
-  var MAX_VALUE_OF_SCALE = 100;
-  var MIN_VALUE_OF_SCALE = 25;
-  var STEP_OF_SCALE = 25;
+  var MAX_VALUE_OF_INDICATOR = 100;
+  var MIN_VALUE_OF_INDICATOR = 25;
+  var STEP_OF_INDICATOR = 25;
+  var STEP_OF_SCALE = 0.25;
 
   var uploadFile = document.querySelector('.upload-file');
   var uploadOverlay = document.querySelector('.upload-overlay');
@@ -15,7 +16,7 @@
   var controlValue = document.querySelector('.upload-resize-controls-value');
   var filterLevel = document.querySelector('.upload-filter-level');
 
-  var valueOfDefault = 100;
+  var valueOfDefault = MAX_VALUE_OF_INDICATOR;
   var scale = 1;
 
   var keydownHandler = function (evt) {
@@ -79,18 +80,18 @@
 
   // CHANGE SCALE
   window.decreaseScale(function () {
-    if (valueOfDefault > MIN_VALUE_OF_SCALE && scale > 0.25) {
-      valueOfDefault = valueOfDefault - STEP_OF_SCALE;
-      scale = scale - 0.25;
+    if (valueOfDefault > MIN_VALUE_OF_INDICATOR && scale > STEP_OF_SCALE) {
+      valueOfDefault = valueOfDefault - STEP_OF_INDICATOR;
+      scale = scale - STEP_OF_SCALE;
       controlValue.value = valueOfDefault + '%';
       photo.style.transform = 'scale(' + (scale) + ')';
     }
   });
 
   window.increaseScale(function () {
-    if (valueOfDefault < MAX_VALUE_OF_SCALE && scale < 1) {
-      valueOfDefault = valueOfDefault + STEP_OF_SCALE;
-      scale = scale + 0.25;
+    if (valueOfDefault < MAX_VALUE_OF_INDICATOR && scale < 1) {
+      valueOfDefault = valueOfDefault + STEP_OF_INDICATOR;
+      scale = scale + STEP_OF_SCALE;
       controlValue.value = valueOfDefault + '%';
       photo.style.transform = 'scale(' + (scale) + ')';
     }
