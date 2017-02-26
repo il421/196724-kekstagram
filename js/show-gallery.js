@@ -1,13 +1,13 @@
 'use strict';
 
 (function () {
-  window.showGallery = function (image, comment, like) {
-    var openedGallery = document.querySelector('.gallery-overlay');
-    var closeGallery = openedGallery.querySelector('.gallery-overlay-close');
-    var galleryImage = openedGallery.querySelector('.gallery-overlay-image');
-    var galleryLike = openedGallery.querySelector('.likes-count');
-    var galleryComment = openedGallery.querySelector('.comments-count');
+  var openedGallery = document.querySelector('.gallery-overlay');
+  var closeGallery = openedGallery.querySelector('.gallery-overlay-close');
+  var galleryImage = openedGallery.querySelector('.gallery-overlay-image');
+  var galleryLike = openedGallery.querySelector('.likes-count');
+  var galleryComment = openedGallery.querySelector('.comments-count');
 
+  window.showGallery = function (image, comment, like) {
     var keydownHendler = function (evt) {
       if (window.utils.isDisactiavateEvent(evt)) {
         openedGallery.classList.add('invisible');

@@ -1,8 +1,11 @@
 'use strict';
-var valueDefault = 100;
-var scale = 1;
+
 
 (function () {
+  var MAX_VALUE_OF_SCALE = 100;
+  var MIN_VALUE_OF_SCALE = 25;
+  var STEP_OF_SCALE = 25;
+
   var uploadFile = document.querySelector('.upload-file');
   var uploadOverlay = document.querySelector('.upload-overlay');
   var uploadFormCancel = document.querySelector('.upload-form-cancel');
@@ -11,6 +14,9 @@ var scale = 1;
   var photo = document.querySelector('.filter-image-preview');
   var controlValue = document.querySelector('.upload-resize-controls-value');
   var filterLevel = document.querySelector('.upload-filter-level');
+
+  var valueOfDefault = 100;
+  var scale = 1;
 
   var keydownHendler = function (evt) {
     if (evt.target !== document.querySelector('textarea') && window.utils.isDisactiavateEvent(evt)) {
@@ -73,25 +79,21 @@ var scale = 1;
   });
 
   // CHANGE SCALE
-  var max = 100;
-  var min = 25;
-  var step = 25;
-
   window.decreaseScale(function () {
-    if (valueDefault > min && scale > 0.25) {
-      valueDefault = valueDefault - step;
+    if (valueOfDefault > MIN_VALUE_OF_SCALE && scale > 0.25) {
+      valueOfDefault = valueOfDefault - STEP_OF_SCALE;
       scale = scale - 0.25;
-      controlValue.value = window.valueDefault + '%';
-      photo.style.transform = 'scale(' + (window.scale) + ')';
+      controlValue.value = valueOfDefault + '%';
+      photo.style.transform = 'scale(' + (scale) + ')';
     }
   });
 
   window.increaseScale(function () {
-    if (valueDefault < max && scale < 1) {
-      valueDefault = valueDefault + step;
+    if (valueOfDefault < MAX_VALUE_OF_SCALE && scale < 1) {
+      valueOfDefault = valueOfDefault + STEP_OF_SCALE;
       scale = scale + 0.25;
-      controlValue.value = window.valueDefault + '%';
-      photo.style.transform = 'scale(' + (window.scale) + ')';
+      controlValue.value = valueOfDefault + '%';
+      photo.style.transform = 'scale(' + (scale) + ')';
     }
   });
 
