@@ -4,6 +4,7 @@
   var SIZE_OF_LINE = 456;
   var STARTING_POINT = 0;
   var UTILITY_FOR_PERCENT = 100;
+  var UTILITY_FOR_SATURATE = 2;
 
   var filterControls = document.querySelector('.upload-filter-controls');
   var filterLine = document.querySelector('.upload-filter-level-line');
@@ -38,7 +39,7 @@
 
     filterPin.style.left = ((positionX * UTILITY_FOR_PERCENT) / SIZE_OF_LINE) + '%';
     filterVal.style.width = ((positionX * UTILITY_FOR_PERCENT) / SIZE_OF_LINE) + '%';
-    photoPreview.style.filter = ' saturate(' + ((positionX * UTILITY_FOR_PERCENT) / SIZE_OF_LINE) + '%' + ')';
+    photoPreview.style.filter = 'saturate(' + ((positionX) * UTILITY_FOR_SATURATE / SIZE_OF_LINE) + ')';
 
     startPoint = {
       x: evtMove.clientX,

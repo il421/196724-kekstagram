@@ -1,6 +1,5 @@
 'use strict';
 
-
 (function () {
   var MAX_VALUE_OF_SCALE = 100;
   var MIN_VALUE_OF_SCALE = 25;
@@ -10,6 +9,7 @@
   var uploadOverlay = document.querySelector('.upload-overlay');
   var uploadFormCancel = document.querySelector('.upload-form-cancel');
   var uploadFormSubmit = document.querySelector('.upload-form-submit');
+  var filterNone = document.querySelector('#upload-filter-none');
 
   var photo = document.querySelector('.filter-image-preview');
   var controlValue = document.querySelector('.upload-resize-controls-value');
@@ -18,7 +18,7 @@
   var valueOfDefault = 100;
   var scale = 1;
 
-  var keydownHendler = function (evt) {
+  var keydownHandler = function (evt) {
     if (evt.target !== document.querySelector('textarea') && window.utils.isDisactiavateEvent(evt)) {
       uploadOverlay.classList.add('invisible');
     }
@@ -26,13 +26,13 @@
 
   var showSetupElement = function () {
     uploadOverlay.classList.remove('invisible');
-    document.addEventListener('keydown', keydownHendler);
+    document.addEventListener('keydown', keydownHandler);
     uploadFile.setAttribute('aria-pressed', true);
     uploadFormCancel.setAttribute('aria-pressed', false);
   };
   var hideSetupElement = function (callback) {
     uploadOverlay.classList.add('invisible');
-    document.removeEventListener('keydown', keydownHendler);
+    document.removeEventListener('keydown', keydownHandler);
     uploadFile.setAttribute('aria-pressed', false);
     uploadFormCancel.setAttribute('aria-pressed', true);
     callback();
@@ -106,5 +106,9 @@
     }
 
     filterLevel.classList.remove(('invisible'));
+
+    filterNone.addEventListener('click', function () {
+      filterLevel.classList.add(('invisible'));
+    });
   });
 })();

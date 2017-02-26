@@ -6,12 +6,14 @@
 
 // OPEN DIALOG
   galleryOfPictures.addEventListener('click', function (evt) {
+    evt.preventDefault();
     var nextSibling = evt.target.nextElementSibling;
     window.showGallery((evt.target.attributes['0'].value), (nextSibling.firstElementChild.innerText), (nextSibling.lastElementChild.innerText));
   });
 
   galleryOfPictures.addEventListener('keydown', function (evt) {
     if (window.utils.isActiavateEvent(evt)) {
+      evt.preventDefault();
       var evtTarget = evt.target.childNodes;
       var evtTargetThird = evtTarget[3];
       window.showGallery((evtTarget[1].attributes['0'].value), (evtTargetThird.firstElementChild.innerText), (evtTargetThird.lastElementChild.innerText));

@@ -8,19 +8,19 @@
   var galleryComment = openedGallery.querySelector('.comments-count');
 
   window.showGallery = function (image, comment, like) {
-    var keydownHendler = function (evt) {
+    var keydownHandler = function (evt) {
       if (window.utils.isDisactiavateEvent(evt)) {
         openedGallery.classList.add('invisible');
       }
     };
     var hideGalleryElement = function () {
       openedGallery.classList.add('invisible');
-      window.removeEventListener('keydown', keydownHendler);
+      window.removeEventListener('keydown', keydownHandler);
     };
 
     // OPEN GALLERY
     openedGallery.classList.remove('invisible');
-    document.addEventListener('keydown', keydownHendler);
+    document.addEventListener('keydown', keydownHandler);
     event.preventDefault();
 
     // CLOSE GALLERY
