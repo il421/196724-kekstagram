@@ -1,0 +1,38 @@
+{
+  "name": "Kekstorgam",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Kekstorgam",
+  "author": "Ilya Suglobov",
+  "repository": {
+    "type": "",
+    "url": ""
+  },
+  "bugs": {
+    "url": ""
+  },
+  "homepage": "",
+  "devDependencies": {
+    "autoprefixer": "^6.7.6",
+    "browser-sync": "^2.18.8",
+    "gulp-csso": "^2.0.0",
+    "css-mqpacker": "^5.0.1",
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-postcss": "^6.3.0",
+    "gulp-rename": "^1.2.2",
+    "i": "^0.3.5",
+    "load-gulp-tasks": "^0.1.0",
+    "npm": "^3.10.8",
+    "run-sequence": "^1.2.2"
+  },
+  "dependencies": {},
+  "scripts": {
+    "build": "gulp build",
+    "start": "npm run build && gulp serve"
+  },
+  "engines": {
+    "node": "^6.9"
+  },
+  "openBrowser": false
+}
