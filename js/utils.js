@@ -1,5 +1,4 @@
 'use strict';
-
 (function () {
   var ENTER_KEY_CODE = 13;
   var ESCAPE_KEY_CODE = 27;
@@ -12,5 +11,10 @@
     isDisactiavateEvent: function (evt) {
       return evt.keyCode && evt.keyCode === ESCAPE_KEY_CODE;
     },
+
+    getRandomNumber: function (arr) {
+      var randomElementIndex = Math.floor(Math.random() * arr.length - 1);
+      return randomElementIndex;
+    }
   };
 })();

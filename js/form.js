@@ -1,114 +1,64 @@
 'use strict';
-
 (function () {
-  var MAX_VALUE_OF_INDICATOR = 100;
-  var MIN_VALUE_OF_INDICATOR = 25;
-  var STEP_OF_INDICATOR = 25;
-  var STEP_OF_SCALE = 0.25;
-
-  var uploadFile = document.querySelector('.upload-file');
-  var uploadOverlay = document.querySelector('.upload-overlay');
+  var uploadSelectImage = document.querySelector('#upload-select-image');
+  var uploadFormOpen = document.querySelector('.upload-control');
   var uploadFormCancel = document.querySelector('.upload-form-cancel');
-  var uploadFormSubmit = document.querySelector('.upload-form-submit');
-  var filterNone = document.querySelector('#upload-filter-none');
+  window.uploadOverlay = document.querySelector('.upload-overlay');
 
-  var photo = document.querySelector('.filter-image-preview');
-  var controlValue = document.querySelector('.upload-resize-controls-value');
+  window.filterImagePreview = document.querySelector('.filter-image-preview');
+  var filterControls = document.querySelector('.upload-filter-controls');
   var filterLevel = document.querySelector('.upload-filter-level');
 
-  var valueOfDefault = MAX_VALUE_OF_INDICATOR;
-  var scale = 1;
+  var controlValue = document.querySelector('.upload-resize-controls-value');
+  var scaleElement = document.querySelector('.upload-resize-controls');
+  var currentValue = 100;
+  var STEP_VALUE = 25;
 
-  var keydownHandler = function (evt) {
-    if (evt.target !== document.querySelector('textarea') && window.utils.isDisactiavateEvent(evt)) {
-      uploadOverlay.classList.add('invisible');
+  var setupKeydownHendler = function (evt) {
+    if (window.utils.isDisactiavateEvent(evt)) {
+      window.uploadOverlay.classList.add('invisible');
+      uploadSelectImage.setAttribute('aria-pressed', false);
+      uploadFormCancel.setAttute('aria-pressed', true);
     }
   };
-
-  var showSetupElement = function () {
-    uploadOverlay.classList.remove('invisible');
-    document.addEventListener('keydown', keydownHandler);
-    uploadFile.setAttribute('aria-pressed', true);
+  var showSetupDialog = function () {
+    window.uploadOverlay.classList.remove('invisible');
+    uploadSelectImage.setAttribute('aria-pressed', true);
     uploadFormCancel.setAttribute('aria-pressed', false);
+    addEventListener('keydown', setupKeydownHendler);
   };
-  var hideSetupElement = function () {
-    uploadOverlay.classList.add('invisible');
-    document.removeEventListener('keydown', keydownHandler);
-    uploadFile.setAttribute('aria-pressed', false);
+  var hideSetupDialog = function () {
+    window.uploadOverlay.classList.add('invisible');
+    uploadSelectImage.setAttribute('aria-pressed', false);
     uploadFormCancel.setAttribute('aria-pressed', true);
-  };
-  var submitElement = function () {
-    uploadOverlay.classList.add('invisible');
-    uploadFormCancel.setAttribute('aria-pressed', true);
-    uploadFormCancel.setAttribute('aria-pressed', false);
+    removeEventListener('keydown', setupKeydownHendler);
   };
 
-  // OPEN FILTER
-  uploadFile.addEventListener('click', function () {
-    showSetupElement();
-  });
+  var applyFilter = function (evt) {
+    evt.target.control.checked = true;
+    window.filterImagePreview.className = evt.target['htmlFor'].substring(7);
+    filterLevel.classList.remove('invisible');
+  };
 
-  uploadFile.addEventListener('keydown', function (evt) {
-    if (window.utils.isActiavateEvent(evt)) {
-      showSetupElement();
-    }
-  });
+  var adjustScale = function (value) {
+    controlValue.value = value + '%';
+    window.filterImagePreview.style.transform = 'scale(' + value / 100 + ')';
+  };
 
-  // CLOSE FILTER AND FOCUS CALLBACK
-  uploadFormCancel.addEventListener('click', function () {
-    hideSetupElement();
-  });
 
-  uploadFormCancel.addEventListener('keydown', function (evt) {
-    if (window.utils.isActiavateEvent(evt)) {
-      hideSetupElement(function () {
-        uploadFile.focus();
-      });
-    }
-  });
+  // OPEN AND CLOSE OVERLAY
+  window.enableSetup(uploadFormOpen, showSetupDialog);
+  window.enableSetup(uploadFormCancel, hideSetupDialog);
 
-  // SUBMIT FILTER
-  uploadFormSubmit.addEventListener('click', function () {
-    submitElement();
-  });
+  // CHANGING FILTERS
+  window.initializeFilters(filterControls, applyFilter);
 
-  uploadFormSubmit.addEventListener('keydown', function (evt) {
-    if (window.utils.isActiavateEvent(evt)) {
-      submitElement();
-    }
-  });
+  // CHANGING SCALE
+  window.initializeScale(scaleElement, currentValue, STEP_VALUE, adjustScale);
 
-  // CHANGE SCALE
-  window.decreaseScale(function () {
-    if (valueOfDefault > MIN_VALUE_OF_INDICATOR && scale > STEP_OF_SCALE) {
-      valueOfDefault = valueOfDefault - STEP_OF_INDICATOR;
-      scale = scale - STEP_OF_SCALE;
-      controlValue.value = valueOfDefault + '%';
-      photo.style.transform = 'scale(' + (scale) + ')';
-    }
-  });
+  // MOVE OVERLAY
+  window.dragAndDrop();
 
-  window.increaseScale(function () {
-    if (valueOfDefault < MAX_VALUE_OF_INDICATOR && scale < 1) {
-      valueOfDefault = valueOfDefault + STEP_OF_INDICATOR;
-      scale = scale + STEP_OF_SCALE;
-      controlValue.value = valueOfDefault + '%';
-      photo.style.transform = 'scale(' + (scale) + ')';
-    }
-  });
-
-  // SELECT FILTER
-  window.changeFilters(function (evt) {
-    photo.className = 'filter-image-preview ' + evt.target['htmlFor'].substring(7);
-
-    if (window.utils.isActiavateEvent(evt)) {
-      photo.className = 'filter-image-preview ' + evt.target['htmlFor'].substring(7);
-    }
-
-    filterLevel.classList.remove(('invisible'));
-
-    filterNone.addEventListener('click', function () {
-      filterLevel.classList.add(('invisible'));
-    });
-  });
-})();
+  // SLIDE FILTERS
+  window.slideFeaturePicture();
+})()

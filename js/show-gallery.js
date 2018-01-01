@@ -1,42 +1,34 @@
 'use strict';
 
 (function () {
-  var openedGallery = document.querySelector('.gallery-overlay');
-  var closeGallery = openedGallery.querySelector('.gallery-overlay-close');
-  var galleryImage = openedGallery.querySelector('.gallery-overlay-image');
-  var galleryLike = openedGallery.querySelector('.likes-count');
-  var galleryComment = openedGallery.querySelector('.comments-count');
-
   window.showGallery = function (image, comment, like) {
+    var galleryOverlay = document.querySelector('.gallery-overlay');
+    var galleryOverlayClose = galleryOverlay.querySelector('.gallery-overlay-close');
+    var galleryImage = galleryOverlay.querySelector('.gallery-overlay-image');
+    var galleryLike = galleryOverlay.querySelector('.likes-count');
+    var galleryComment = galleryOverlay.querySelector('.gallery-overlay-comments');
+
     var keydownHandler = function (evt) {
       if (window.utils.isDisactiavateEvent(evt)) {
-        openedGallery.classList.add('invisible');
+        galleryOverlay.classList.add('invisible');
       }
     };
-    var hideGalleryElement = function () {
-      openedGallery.classList.add('invisible');
-      window.removeEventListener('keydown', keydownHandler);
+    var hideGalleryOverlay = function () {
+      galleryOverlay.classList.add('invisible');
+      removeEventListener('keydown', keydownHandler);
     };
 
     // OPEN GALLERY
-    openedGallery.classList.remove('invisible');
-    document.addEventListener('keydown', keydownHandler);
+    galleryOverlay.classList.remove('invisible');
     event.preventDefault();
+    addEventListener('keydown', keydownHandler);
 
-    // CLOSE GALLERY
-    closeGallery.addEventListener('click', function () {
-      hideGalleryElement();
-    });
-
-    closeGallery.addEventListener('keydown', function (evt) {
-      if (window.utils.isActiavateEvent(evt)) {
-        hideGalleryElement();
-      }
-    });
-
-    // FILL IN DIALOG
+    // FILL IN GALLERY
     galleryImage.setAttribute('src', image);
     galleryLike.textContent = like;
     galleryComment.textContent = comment;
-  };
-})();
+
+    // CLOSE GALLERY
+    galleryOverlayClose.addEventListener('click', hideGalleryOverlay);
+  }
+})()

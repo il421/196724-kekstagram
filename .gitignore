@@ -1,6 +1,4 @@
-build/
 node_modules/
-js_train/
 .DS_Store
 Thumbs.db
 .idea
@@ -9,5 +7,6 @@ Thumbs.db
 *.psd
 *.ai
 *.pdf
+build/
 yarn.lock
 npm-debug.log*

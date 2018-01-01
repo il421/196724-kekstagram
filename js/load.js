@@ -1,11 +1,19 @@
 'use strict';
-
 (function () {
-  var DATA_MY = '../data.json';
-  window.load = function (onload) {
+  window.load = function (url, onLoad) {
     var xhr = new XMLHttpRequest();
-    xhr.addEventListener('load', onload);
-    xhr.open('GET', DATA_MY);
+
+    xhr.addEventListener('load', onLoad);
+
+    xhr.addEventListener('error', function() {
+      alert('Something\'s went wrong');
+      });
+
+    xhr.addEventListener('timeout', function() {
+        alert('Time\'s up!');
+      });
+    xhr.timeout = 500;
+    xhr.open('GET', url);
     xhr.send();
-  };
-})();
+  }
+})()
