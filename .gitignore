@@ -7,6 +7,6 @@ Thumbs.db
 *.psd
 *.ai
 *.pdf
-build/
+# build/
 yarn.lock
 npm-debug.log*
